@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/test")
 class TestController {
 
-    @GetMapping("/employees")
+    @GetMapping
     fun getAllEmployees(): String = "bu bir iarpiCompany projesidir"
 }
