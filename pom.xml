@@ -8,11 +8,11 @@
         <version>3.4.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.iarpi</groupId>
-    <artifactId>ERP</artifactId>
+    <groupId>com.example</groupId>
+    <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ERP</name>
-    <description>ERP</description>
+    <name>demo</name>
+    <description>Demo project for Spring Boot</description>
     <url/>
     <licenses>
         <license/>
@@ -40,8 +40,12 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-kotlin</artifactId>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-database-postgresql</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
@@ -72,15 +76,6 @@
             <artifactId>kotlin-test-junit5</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-            <version>11.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-database-postgresql</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
@@ -107,6 +102,7 @@
                         <arg>-Xjsr305=strict</arg>
                     </args>
                     <compilerPlugins>
+                        <plugin>all-open</plugin>
                         <plugin>spring</plugin>
                         <plugin>jpa</plugin>
                     </compilerPlugins>

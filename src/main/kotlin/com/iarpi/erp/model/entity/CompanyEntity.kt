@@ -9,9 +9,11 @@ import jakarta.persistence.Table
 @Table(name = "BSMGRIRPGEN001")
 data class CompanyEntity(
 
+    //todo: burada adresi de eklememiz lazım, burada gecici olarak adresi kaldirdik
+
     @Id
     @Column(name = "COM_CODE", nullable = false)
     val comCode: String,
     @Column(name = "COM_TEXT", nullable = false)
-    val comText: String
+    var comText: String
 )
