@@ -1,4 +1,4 @@
-package com.iarpi.erp.service
+package com.iarpi.erp.service.impl
 
 import com.iarpi.erp.model.dto.CompanyDto
 import com.iarpi.erp.model.dto.convertToEntity
@@ -6,6 +6,7 @@ import com.iarpi.erp.model.entity.convertToDto
 import com.iarpi.erp.model.exception.AlreadyExistException
 import com.iarpi.erp.model.exception.NotFoundException
 import com.iarpi.erp.repository.CompanyRepository
+import com.iarpi.erp.service.CompanyService
 import org.springframework.stereotype.Service
 
 @Service

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/gen")
-class GenController(val companyService: CompanyService) {
+class CompanyController(val companyService: CompanyService) {
 
 
     @GetMapping("/{comCode}")
