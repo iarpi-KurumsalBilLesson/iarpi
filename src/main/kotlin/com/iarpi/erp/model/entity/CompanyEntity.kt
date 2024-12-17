@@ -1,5 +1,6 @@
 package com.iarpi.erp.model.entity
 
+import com.iarpi.erp.model.dto.CompanyDto
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
@@ -17,3 +18,10 @@ data class CompanyEntity(
     @Column(name = "COM_TEXT", nullable = false)
     var comText: String
 )
+
+fun CompanyEntity.convertToDto(): CompanyDto {
+    return CompanyDto(
+        comCode = this.comCode.uppercase(),
+        comText = this.comText
+    )
+}
