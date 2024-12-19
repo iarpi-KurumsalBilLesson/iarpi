@@ -13,9 +13,8 @@ import org.springframework.stereotype.Service
 class CompanyServiceImpl(var companyRepository: CompanyRepository) : CompanyService {
 
     override fun createNewCompany(companyDto: CompanyDto): CompanyDto {
-        if (companyRepository.findById(companyDto.comCode).isPresent) {
+        if (companyRepository.findByComCode(companyDto.comCode).isPresent) {
             throw AlreadyExistException(companyDto.comCode)
-
         }
 
         val entity = companyDto.convertToEntity()
@@ -24,28 +23,31 @@ class CompanyServiceImpl(var companyRepository: CompanyRepository) : CompanyServ
         return record.convertToDto()
     }
 
-    override fun deleteCompanyWithComCode(comCode: String): String {
-        companyRepository.deleteById(comCode)
-        return String.format("Record was deleted by %S id", comCode)
-    }
-
-    override fun updateComTextWithComCode(companyDto: CompanyDto): CompanyDto {
-        val entity = companyRepository.findById(companyDto.comCode)
-            .orElseThrow { NotFoundException(companyDto.comCode) }
+    override fun updateComText(companyDto: CompanyDto): CompanyDto {
+        val entity = companyDto.id?.let { id ->
+            companyRepository.findById(id)
+                .orElseThrow { NotFoundException(companyDto.comCode) }
+        } ?: throw NotFoundException(companyDto.comCode) //burayı sonra degistirebilirsin
 
         entity.comText = companyDto.comText
         val record = companyRepository.save(entity)
         return record.convertToDto()
     }
 
-    override fun getCompanyByComCode(comCode: String): CompanyDto {
-        val company = companyRepository.findById(comCode).orElseThrow()
-        { NotFoundException(comCode) }
+    override fun deleteById(id: Long): String {
+        companyRepository.findById(id).orElseThrow { NotFoundException(id.toString()) }
+        companyRepository.deleteById(id)
 
-        return company.convertToDto()
+        return String.format("Record was deleted by %S id", id)
     }
 
     override fun getAll(): List<CompanyDto> {
         return companyRepository.findAll().map { item -> item.convertToDto() }
+    }
+
+    override fun getByComCode(comCode: String): CompanyDto {
+        val entity = companyRepository.findByComCode(comCode).orElseThrow { throw NotFoundException(comCode) }
+
+        return entity.convertToDto() // id verilmeli mi ?
     }
 }

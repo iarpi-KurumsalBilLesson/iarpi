@@ -2,7 +2,9 @@ package com.iarpi.erp.model.dto
 
 import com.iarpi.erp.model.entity.CompanyEntity
 
-data class CompanyDto(val comCode: String, val comText: String)
+data class CompanyDto(var id: Long?, val comCode: String, val comText: String) {
+    constructor(comCode: String, comText: String) : this(0, comCode, comText)
+}
 
 fun CompanyDto.convertToEntity(): CompanyEntity {
     return CompanyEntity(

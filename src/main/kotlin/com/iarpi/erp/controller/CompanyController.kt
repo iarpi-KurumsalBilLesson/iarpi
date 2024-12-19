@@ -13,17 +13,18 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/gen")
 class CompanyController(val companyService: CompanyService) {
 
-
     @GetMapping("/{comCode}")
     fun getCompanyByComCode(@PathVariable comCode: String): BaseResponse<CompanyDto> {
         val upperComCode = comCode.uppercase()
-        val response = companyService.getCompanyByComCode(upperComCode)
+        val response = companyService.getByComCode(upperComCode)
+
         return BaseResponse.success(response)
     }
 
     @GetMapping()
     fun getCompanyByComCode(): BaseCollectionResponse<CompanyDto> {
         val response = companyService.getAll()
+
         return BaseCollectionResponse.success(response)
     }
 
@@ -31,20 +32,25 @@ class CompanyController(val companyService: CompanyService) {
     fun createNewCompany(@RequestBody req: CreateCompanyRequest): BaseResponse<CompanyDto> {
         val company = req.convertToDto()
         val response = companyService.createNewCompany(company)
+
         return BaseResponse.success(response)
     }
 
-    @PutMapping
-    fun updateCompany(@RequestBody req: UpdateCompanyRequest): BaseResponse<CompanyDto> {
+    @PutMapping("/{id}")
+    fun updateCompany(@PathVariable id: Long, @RequestBody req: UpdateCompanyRequest): BaseResponse<CompanyDto> {
         //todo : burada hep aklına takılan bir durum var, guncellemeyi nasıl yapıcaz ? * new Instance / same Id *
         val company = req.convertToDto()
-        val response = companyService.updateComTextWithComCode(company)
+        company.id = id
+
+        val response = companyService.updateComText(company)
+
         return BaseResponse.success(response)
     }
 
-    @DeleteMapping("/{comCode}")
-    fun deleteCompany(@PathVariable comCode: String): BaseResponse<String> {
-        val response = companyService.deleteCompanyWithComCode(comCode)
+    @DeleteMapping("/{id}")
+    fun deleteCompany(@PathVariable id: Long): BaseResponse<String> {
+        val response = companyService.deleteById(id)
+
         return BaseResponse.success(response)
     }
 }

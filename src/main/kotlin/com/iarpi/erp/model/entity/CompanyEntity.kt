@@ -13,15 +13,20 @@ data class CompanyEntity(
     //todo: burada adresi de eklememiz lazım, burada gecici olarak adresi kaldirdik
 
     @Id
+    val id: Long?,
     @Column(name = "COM_CODE", nullable = false)
     val comCode: String,
     @Column(name = "COM_TEXT", nullable = false)
     var comText: String
-)
+) {
+    constructor(comCode: String, comText: String) : this(null, comCode, comText) {
+    }
+}
 
 fun CompanyEntity.convertToDto(): CompanyDto {
     return CompanyDto(
-        comCode = this.comCode.uppercase(),
-        comText = this.comText
+        id = this.id,
+        comCode = this.comCode,
+        comText = this.comText,
     )
 }

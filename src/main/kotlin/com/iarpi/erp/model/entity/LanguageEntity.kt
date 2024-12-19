@@ -3,42 +3,25 @@ package com.iarpi.erp.model.entity
 import com.iarpi.erp.model.dto.LanguageDto
 import jakarta.persistence.*
 import lombok.Setter
-import java.io.Serializable
 
 @Entity
 @Table(name = "BSMGRIRPGEN002")
 @Setter
 data class LanguageEntity(
 
-    @EmbeddedId
-    val id: LanguageId,
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    val id: Long?,
+
+    @Column(name = "LAN_CODE", nullable = false)
+    var lanCode: String,
 
     @Column(name = "LAN_TEXT", nullable = false)
-    var lanText: String,
-
-    @MapsId("comCode")
-    @ManyToOne
-    @JoinColumn(name = "COM_CODE")
-    val comCode: CompanyEntity?
+    var lanText: String
 ) {
-    constructor(lanText: String, id: LanguageId) : this(
-        lanText = lanText,
-        id = id,
-        comCode = null
-    )
+    constructor(lanCode: String, lanText: String) : this(null, lanCode, lanText)
 }
 
-@Embeddable
-class LanguageId(
-    var comCode: String,
-    var lanCode: String
-
-) : Serializable
-
 fun LanguageEntity.convertToDto(): LanguageDto {
-    return LanguageDto(
-        comCode = this.id.comCode,
-        lanCode = this.id.lanCode,
-        lanText = this.lanText
-    )
+    return LanguageDto(this.id, this.lanCode, lanText)
 }
