@@ -19,7 +19,7 @@ class UnitController(val unitService: UnitService) {
     }
 
     @GetMapping("/{id}")
-    fun getUnitCodeById(@PathVariable id : Long): BaseResponse<UnitDto> {
+    fun getUnitCodeById(@PathVariable id: Long): BaseResponse<UnitDto> {
         val units = unitService.getById(id)
 
         return BaseResponse.success(units);
@@ -33,8 +33,8 @@ class UnitController(val unitService: UnitService) {
     }
 
     @PutMapping("/{id}")
-    fun updateUnit(@PathVariable id : Long,@RequestBody request: UpdateUnitRequest): BaseResponse<UnitDto> {
-        val record = unitService.updateUnit(id,request.convertToDto())
+    fun updateUnit(@PathVariable id: Long, @RequestBody request: UpdateUnitRequest): BaseResponse<UnitDto> {
+        val record = unitService.updateUnit(id, request.convertToDto())
 
         return BaseResponse.success(record)
     }

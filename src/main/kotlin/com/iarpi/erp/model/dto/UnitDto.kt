@@ -20,7 +20,7 @@ fun UnitDto.convertToEntity(): UnitEntity {
     )
 }
 
-fun UnitDto.convertToEntity(unitCode : String): UnitEntity {
+fun UnitDto.convertToEntity(unitCode: String): UnitEntity {
     return UnitEntity(
         null,
         unitCode,

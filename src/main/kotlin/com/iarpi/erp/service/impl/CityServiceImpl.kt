@@ -4,7 +4,6 @@ import com.iarpi.erp.model.dto.CityDto
 import com.iarpi.erp.model.entity.convertToDto
 import com.iarpi.erp.model.exception.NotFoundException
 import com.iarpi.erp.repository.CityRepository
-import com.iarpi.erp.repository.CompanyRepository
 import com.iarpi.erp.service.CityService
 import org.springframework.stereotype.Service
 
@@ -18,7 +17,7 @@ class CityServiceImpl(
     }
 
     override fun getByCityCode(cityCode: String): CityDto {
-        val entity = repository.findByCityCode(cityCode).orElseThrow{
+        val entity = repository.findByCityCode(cityCode).orElseThrow {
             NotFoundException(cityCode)
         }
 

@@ -25,7 +25,7 @@ data class UnitEntity(
     var mainUnitCode: String,
 )
 
-fun UnitEntity.convertToDto() : UnitDto {
+fun UnitEntity.convertToDto(): UnitDto {
     return UnitDto(
         this.id,
         this.unitCode,
