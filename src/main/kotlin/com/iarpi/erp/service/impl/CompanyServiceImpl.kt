@@ -26,8 +26,8 @@ class CompanyServiceImpl(var companyRepository: CompanyRepository) : CompanyServ
     override fun updateComText(companyDto: CompanyDto): CompanyDto {
         val entity = companyDto.id?.let { id ->
             companyRepository.findById(id)
-                .orElseThrow { NotFoundException(companyDto.comCode) }
-        } ?: throw NotFoundException(companyDto.comCode) //burayı sonra degistirebilirsin
+                .orElseThrow { NotFoundException(companyDto.id.toString()) }
+        } ?: throw NotFoundException(companyDto.id.toString())
 
         entity.comText = companyDto.comText
         val record = companyRepository.save(entity)

@@ -15,7 +15,10 @@ data class CountryEntity(
     var countryCode: String,
 
     @Column(name = "COUNTRY_TEXT", nullable = false)
-    var countryText: String
+    var countryText: String,
+
+    @OneToMany(mappedBy = "country",targetEntity = CityEntity::class, fetch = FetchType.EAGER)
+    var city : List<CityEntity> = mutableListOf()
 )
 
 fun CountryEntity.convertToDto(): CountryDto {

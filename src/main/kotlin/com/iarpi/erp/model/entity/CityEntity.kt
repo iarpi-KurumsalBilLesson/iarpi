@@ -17,7 +17,6 @@ data class CityEntity(
     @Column(name = "CITY_TEXT")
     var cityText: String,
 
-    @JoinColumn(name = "COUNTRY_ID")
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.REMOVE])
     var country: CountryEntity?
 )

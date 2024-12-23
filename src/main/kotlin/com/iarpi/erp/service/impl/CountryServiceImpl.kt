@@ -1,6 +1,7 @@
 package com.iarpi.erp.service.impl
 
 import com.iarpi.erp.model.dto.CountryDto
+import com.iarpi.erp.model.entity.CountryEntity
 import com.iarpi.erp.model.entity.convertToDto
 import com.iarpi.erp.model.exception.NotFoundException
 import com.iarpi.erp.repository.CountryRepository
@@ -15,6 +16,10 @@ class CountryServiceImpl(var repository: CountryRepository, var companyService: 
         return repository.findAll().map { item ->
             item.convertToDto()
         }
+    }
+
+    override fun getAllEntity(): List<CountryEntity> {
+        return repository.findAll()
     }
 
     override fun getByCountryCode(countryCode: String): CountryDto {

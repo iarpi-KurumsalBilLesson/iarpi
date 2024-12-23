@@ -38,7 +38,6 @@ class CompanyController(val companyService: CompanyService) {
 
     @PutMapping("/{id}")
     fun updateCompany(@PathVariable id: Long, @RequestBody req: UpdateCompanyRequest): BaseResponse<CompanyDto> {
-        //todo : burada hep aklına takılan bir durum var, guncellemeyi nasıl yapıcaz ? * new Instance / same Id *
         val company = req.convertToDto()
         company.id = id
 
