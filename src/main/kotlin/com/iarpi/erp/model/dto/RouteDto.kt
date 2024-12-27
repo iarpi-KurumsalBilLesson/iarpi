@@ -9,7 +9,7 @@ data class RouteDto(
     var isPassive:Boolean,
 )
 
-fun RouteDto.toConvertEntity():RouteEntity{
+fun RouteDto.convertToEntity():RouteEntity{
     return RouteEntity(
         null,
         this.docType,

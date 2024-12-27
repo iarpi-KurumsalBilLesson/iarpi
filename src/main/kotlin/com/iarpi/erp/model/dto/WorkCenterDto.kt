@@ -1,16 +1,16 @@
 package com.iarpi.erp.model.dto
 
-import com.iarpi.erp.model.entity.BusinessCenterEntity
+import com.iarpi.erp.model.entity.WorkCenterEntity
 
-data class BusinessCenterDto(
+data class WorkCenterDto(
     var id:Long?,
     var docType: String,
     var docTypeText: String,
     var isPassive: Boolean,
 )
 
-fun BusinessCenterDto.convertToEntity():BusinessCenterEntity{
-    return BusinessCenterEntity(
+fun WorkCenterDto.convertToEntity():WorkCenterEntity{
+    return WorkCenterEntity(
         null,
         this.docType,
         this.docTypeText,
@@ -18,8 +18,8 @@ fun BusinessCenterDto.convertToEntity():BusinessCenterEntity{
     )
 }
 
-fun BusinessCenterDto.convertToEntity(BusinessCode:String):BusinessCenterEntity{
-    return BusinessCenterEntity(
+fun WorkCenterDto.convertToEntity(BusinessCode:String):WorkCenterEntity{
+    return WorkCenterEntity(
         null,
         BusinessCode,
         this.docTypeText,

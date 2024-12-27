@@ -1,15 +1,12 @@
 package com.iarpi.erp.model.entity
 
-import com.iarpi.erp.model.dto.BomDto
-import com.iarpi.erp.model.dto.BusinessCenterDto
-import com.iarpi.erp.model.dto.CostCenterDto
-import com.iarpi.erp.model.dto.RouteDto
+import com.iarpi.erp.model.dto.WorkCenterDto
 import jakarta.persistence.*
 
 
 @Entity
 @Table(name = "BSMGRIRPROT002")
-data class BusinessCenterEntity(
+data class WorkCenterEntity(
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "business_sequence")
@@ -26,8 +23,8 @@ data class BusinessCenterEntity(
     var isPassive: Boolean,
 )
 
-fun BusinessCenterEntity.convertToDto(): BusinessCenterDto {
-    return BusinessCenterDto(
+fun WorkCenterEntity.convertToDto(): WorkCenterDto {
+    return WorkCenterDto(
         this.id,
         this.docType,
         this.docText,
