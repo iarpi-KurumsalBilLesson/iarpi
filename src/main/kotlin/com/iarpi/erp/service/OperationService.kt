@@ -1,6 +1,6 @@
 package com.iarpi.erp.service
 
-import com.iarpi.erp.model.dto.OperationDto
+import com.iarpi.erp.model.dto.control.OperationDto
 
 interface OperationService {
     fun getAll(): List<OperationDto>

@@ -4,7 +4,7 @@ import com.iarpi.erp.controller.request.CreateNewOperationRequest
 import com.iarpi.erp.controller.request.UpdateOperationRequest
 import com.iarpi.erp.controller.request.convertToDto
 import com.iarpi.erp.controller.response.BaseResponse
-import com.iarpi.erp.model.dto.OperationDto
+import com.iarpi.erp.model.dto.control.OperationDto
 import com.iarpi.erp.service.OperationService
 import org.springframework.web.bind.annotation.*
 

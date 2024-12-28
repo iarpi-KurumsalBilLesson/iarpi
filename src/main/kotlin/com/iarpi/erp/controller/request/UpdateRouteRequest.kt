@@ -1,6 +1,6 @@
 package com.iarpi.erp.controller.request
 
-import com.iarpi.erp.model.dto.RouteDto
+import com.iarpi.erp.model.dto.control.RouteDto
 
 data class UpdateRouteRequest(
     var docTypeText: String,

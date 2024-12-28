@@ -1,7 +1,8 @@
 package com.iarpi.erp.service.impl
 
-import com.iarpi.erp.model.dto.BomDto
-import com.iarpi.erp.model.dto.convertToEntity
+import com.iarpi.erp.model.dto.control.BomDto
+import com.iarpi.erp.model.dto.control.convertToEntity
+import com.iarpi.erp.model.entity.BomEntity
 import com.iarpi.erp.model.entity.convertToDto
 import com.iarpi.erp.model.exception.NotFoundException
 import com.iarpi.erp.repository.BomRepository
@@ -38,5 +39,9 @@ class BomServiceImpl(val bomRepository: BomRepository) : BomService {
         bomRepository.deleteById(id)
 
         return "Record was deleted"
+    }
+
+    override fun findById(id: Long): BomEntity {
+        return bomRepository.findById(id).orElseThrow { NotFoundException(id.toString()) }
     }
 }

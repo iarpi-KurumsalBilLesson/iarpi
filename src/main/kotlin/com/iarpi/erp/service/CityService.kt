@@ -1,6 +1,6 @@
 package com.iarpi.erp.service
 
-import com.iarpi.erp.model.dto.CityDto
+import com.iarpi.erp.model.dto.control.CityDto
 
 
 interface CityService {

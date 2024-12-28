@@ -1,6 +1,6 @@
 package com.iarpi.erp.controller.request
 
-import com.iarpi.erp.model.dto.CostCenterDto
+import com.iarpi.erp.model.dto.control.CostCenterDto
 
 data class UpdateCostCenterRequest(
     var docTypeText: String,

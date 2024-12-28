@@ -4,7 +4,7 @@ import com.iarpi.erp.controller.request.CreateNewWorkCenterRequest
 import com.iarpi.erp.controller.request.UpdateWorkCenterRequest
 import com.iarpi.erp.controller.request.convertToDto
 import com.iarpi.erp.controller.response.BaseResponse
-import com.iarpi.erp.model.dto.WorkCenterDto
+import com.iarpi.erp.model.dto.control.WorkCenterDto
 import com.iarpi.erp.service.WorkCenterService
 import org.springframework.web.bind.annotation.*
 

@@ -1,7 +1,8 @@
 package com.iarpi.erp.service.impl
 
-import com.iarpi.erp.model.dto.CompanyDto
-import com.iarpi.erp.model.dto.convertToEntity
+import com.iarpi.erp.model.dto.control.CompanyDto
+import com.iarpi.erp.model.dto.control.convertToEntity
+import com.iarpi.erp.model.entity.CompanyEntity
 import com.iarpi.erp.model.entity.convertToDto
 import com.iarpi.erp.model.exception.AlreadyExistException
 import com.iarpi.erp.model.exception.NotFoundException
@@ -43,6 +44,10 @@ class CompanyServiceImpl(var companyRepository: CompanyRepository) : CompanyServ
 
     override fun getAll(): List<CompanyDto> {
         return companyRepository.findAll().map { item -> item.convertToDto() }
+    }
+
+    override fun findById(id: Long): CompanyEntity {
+        return companyRepository.findById(id).orElseThrow { NotFoundException(id.toString()) }
     }
 
     override fun getByComCode(comCode: String): CompanyDto {

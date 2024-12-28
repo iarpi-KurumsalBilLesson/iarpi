@@ -1,6 +1,6 @@
 package com.iarpi.erp.service
 
-import com.iarpi.erp.model.dto.CostCenterDto
+import com.iarpi.erp.model.dto.control.CostCenterDto
 
 interface CostCenterService {
 

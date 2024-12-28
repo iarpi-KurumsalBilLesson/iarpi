@@ -2,7 +2,7 @@ package com.iarpi.erp.controller
 
 import com.iarpi.erp.controller.response.BaseCollectionResponse
 import com.iarpi.erp.controller.response.BaseResponse
-import com.iarpi.erp.model.dto.LanguageDto
+import com.iarpi.erp.model.dto.control.LanguageDto
 import com.iarpi.erp.service.LanguageService
 import org.springframework.web.bind.annotation.*
 

@@ -1,6 +1,6 @@
 package com.iarpi.erp.model.entity
 
-import com.iarpi.erp.model.dto.CountryDto
+import com.iarpi.erp.model.dto.control.CountryDto
 import jakarta.persistence.*
 
 @Entity

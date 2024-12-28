@@ -4,7 +4,7 @@ import com.iarpi.erp.controller.request.CreateNewRouteRequest
 import com.iarpi.erp.controller.request.UpdateRouteRequest
 import com.iarpi.erp.controller.request.convertToDto
 import com.iarpi.erp.controller.response.BaseResponse
-import com.iarpi.erp.model.dto.RouteDto
+import com.iarpi.erp.model.dto.control.RouteDto
 import com.iarpi.erp.service.RouteService
 import org.springframework.web.bind.annotation.*
 

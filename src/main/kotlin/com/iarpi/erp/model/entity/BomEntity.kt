@@ -1,7 +1,6 @@
 package com.iarpi.erp.model.entity
 
-import com.iarpi.erp.model.dto.BomDto
-import com.iarpi.erp.model.dto.CostCenterDto
+import com.iarpi.erp.model.dto.control.BomDto
 import jakarta.persistence.*
 
 

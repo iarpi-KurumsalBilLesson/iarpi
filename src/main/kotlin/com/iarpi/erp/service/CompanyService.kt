@@ -1,6 +1,7 @@
 package com.iarpi.erp.service
 
-import com.iarpi.erp.model.dto.CompanyDto
+import com.iarpi.erp.model.dto.control.CompanyDto
+import com.iarpi.erp.model.entity.CompanyEntity
 
 interface CompanyService {
 
@@ -9,5 +10,6 @@ interface CompanyService {
     fun updateComText(companyDto: CompanyDto): CompanyDto
     fun getAll(): List<CompanyDto>
     fun getByComCode(comCode: String): CompanyDto
+    fun findById(id: Long) : CompanyEntity
     //fun findCompanyWithComCode(); TODO : not implemented
 }

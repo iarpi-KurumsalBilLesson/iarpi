@@ -1,6 +1,6 @@
 package com.iarpi.erp.service
 
-import com.iarpi.erp.model.dto.WorkCenterDto
+import com.iarpi.erp.model.dto.control.WorkCenterDto
 
 interface WorkCenterService {
 

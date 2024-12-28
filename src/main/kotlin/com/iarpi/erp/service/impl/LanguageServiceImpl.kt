@@ -1,6 +1,7 @@
 package com.iarpi.erp.service.impl
 
-import com.iarpi.erp.model.dto.LanguageDto
+import com.iarpi.erp.model.dto.control.LanguageDto
+import com.iarpi.erp.model.entity.LanguageEntity
 import com.iarpi.erp.model.entity.convertToDto
 import com.iarpi.erp.model.exception.NotFoundException
 import com.iarpi.erp.repository.LanguageRepository
@@ -22,5 +23,9 @@ class LanguageServiceImpl(
         }
 
         return entity.convertToDto()
+    }
+
+    override fun findById(id: Long): LanguageEntity {
+        return repository.findById(id).orElseThrow{NotFoundException(id.toString())}
     }
 }

@@ -1,4 +1,4 @@
-package com.iarpi.erp.model.dto
+package com.iarpi.erp.model.dto.control
 
 import com.iarpi.erp.model.entity.RouteEntity
 

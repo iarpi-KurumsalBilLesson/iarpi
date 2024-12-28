@@ -1,6 +1,6 @@
 package com.iarpi.erp.model.entity
 
-import com.iarpi.erp.model.dto.MaterialDto
+import com.iarpi.erp.model.dto.control.MaterialControlDto
 import jakarta.persistence.*
 
 
@@ -23,8 +23,8 @@ data class MaterialEntity(
     var isPassive: Boolean,
 )
 
-fun MaterialEntity.convertToDto(): MaterialDto {
-    return MaterialDto(
+fun MaterialEntity.convertToDto(): MaterialControlDto {
+    return MaterialControlDto(
         this.id,
         this.docType,
         this.docText,

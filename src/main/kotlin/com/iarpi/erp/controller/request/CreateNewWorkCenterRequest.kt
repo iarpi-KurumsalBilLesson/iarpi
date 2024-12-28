@@ -1,6 +1,6 @@
 package com.iarpi.erp.controller.request
 
-import com.iarpi.erp.model.dto.WorkCenterDto
+import com.iarpi.erp.model.dto.control.WorkCenterDto
 
 data class CreateNewWorkCenterRequest (
     var docType: String,

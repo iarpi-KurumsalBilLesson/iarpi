@@ -1,6 +1,6 @@
 package com.iarpi.erp.model.entity
 
-import com.iarpi.erp.model.dto.CompanyDto
+import com.iarpi.erp.model.dto.control.CompanyDto
 import jakarta.persistence.*
 
 @Entity
@@ -16,9 +16,13 @@ data class CompanyEntity(
     @Column(name = "COM_CODE", nullable = false)
     val comCode: String,
     @Column(name = "COM_TEXT", nullable = false)
-    var comText: String
+    var comText: String,
+
+    @OneToOne(mappedBy = "companyEntity")
+    @JoinColumn(referencedColumnName = "ID")
+    var addressEntity: AddressEntity?
 ) {
-    constructor(comCode: String, comText: String) : this(null, comCode, comText) {
+    constructor(comCode: String, comText: String) : this(null, comCode, comText,null) {
     }
 }
 

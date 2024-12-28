@@ -2,7 +2,7 @@ package com.iarpi.erp.controller
 
 import com.iarpi.erp.controller.response.BaseCollectionResponse
 import com.iarpi.erp.controller.response.BaseResponse
-import com.iarpi.erp.model.dto.CityDto
+import com.iarpi.erp.model.dto.control.CityDto
 import com.iarpi.erp.service.CityService
 import org.springframework.web.bind.annotation.*
 

@@ -1,6 +1,6 @@
 package com.iarpi.erp.service
 
-import com.iarpi.erp.model.dto.CountryDto
+import com.iarpi.erp.model.dto.control.CountryDto
 import com.iarpi.erp.model.entity.CountryEntity
 
 interface CountryService {

@@ -1,6 +1,6 @@
 package com.iarpi.erp.model.entity
 
-import com.iarpi.erp.model.dto.WorkCenterDto
+import com.iarpi.erp.model.dto.control.WorkCenterDto
 import jakarta.persistence.*
 
 

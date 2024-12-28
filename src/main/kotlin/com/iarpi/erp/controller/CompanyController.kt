@@ -5,7 +5,7 @@ import com.iarpi.erp.controller.request.UpdateCompanyRequest
 import com.iarpi.erp.controller.request.convertToDto
 import com.iarpi.erp.controller.response.BaseCollectionResponse
 import com.iarpi.erp.controller.response.BaseResponse
-import com.iarpi.erp.model.dto.CompanyDto
+import com.iarpi.erp.model.dto.control.CompanyDto
 import com.iarpi.erp.service.CompanyService
 import org.springframework.web.bind.annotation.*
 

@@ -1,6 +1,6 @@
 package com.iarpi.erp.controller.request
 
-import com.iarpi.erp.model.dto.BomDto
+import com.iarpi.erp.model.dto.control.BomDto
 
 data class UpdateBomRequest(
     var docType: String,

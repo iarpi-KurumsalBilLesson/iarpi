@@ -1,6 +1,6 @@
 package com.iarpi.erp.controller.request
 
-import com.iarpi.erp.model.dto.OperationDto
+import com.iarpi.erp.model.dto.control.OperationDto
 
 data class CreateNewOperationRequest(
     var docType: String,

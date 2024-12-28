@@ -4,7 +4,7 @@ import com.iarpi.erp.controller.request.CreateNewCostCenterRequest
 import com.iarpi.erp.controller.request.UpdateCostCenterRequest
 import com.iarpi.erp.controller.request.convertToDto
 import com.iarpi.erp.controller.response.BaseResponse
-import com.iarpi.erp.model.dto.CostCenterDto
+import com.iarpi.erp.model.dto.control.CostCenterDto
 import com.iarpi.erp.service.CostCenterService
 import org.springframework.web.bind.annotation.*
 

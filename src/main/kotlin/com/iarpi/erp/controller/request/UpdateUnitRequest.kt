@@ -1,6 +1,6 @@
 package com.iarpi.erp.controller.request
 
-import com.iarpi.erp.model.dto.UnitDto
+import com.iarpi.erp.model.dto.control.UnitDto
 
 data class UpdateUnitRequest(
     val unitText: String,

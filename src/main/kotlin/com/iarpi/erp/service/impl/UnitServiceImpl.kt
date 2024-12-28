@@ -1,7 +1,8 @@
 package com.iarpi.erp.service.impl
 
-import com.iarpi.erp.model.dto.UnitDto
-import com.iarpi.erp.model.dto.convertToEntity
+import com.iarpi.erp.model.dto.control.UnitDto
+import com.iarpi.erp.model.dto.control.convertToEntity
+import com.iarpi.erp.model.entity.UnitEntity
 import com.iarpi.erp.model.entity.convertToDto
 import com.iarpi.erp.model.exception.NotFoundException
 import com.iarpi.erp.repository.UnitRepository
@@ -33,6 +34,10 @@ class UnitServiceImpl(val unitRepository: UnitRepository) : UnitService {
 
     override fun getById(id: Long): UnitDto {
         return unitRepository.findById(id).orElseThrow { NotFoundException(id.toString()) }.convertToDto()
+    }
+
+    override fun findById(id: Long) : UnitEntity{
+        return unitRepository.findById(id).orElseThrow { NotFoundException(id.toString()) }
     }
 
     override fun deleteUnit(id: Long): String {

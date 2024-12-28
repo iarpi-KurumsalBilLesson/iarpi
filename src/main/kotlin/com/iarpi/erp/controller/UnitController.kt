@@ -4,7 +4,7 @@ import com.iarpi.erp.controller.request.CreateNewUnitRequest
 import com.iarpi.erp.controller.request.UpdateUnitRequest
 import com.iarpi.erp.controller.request.convertToDto
 import com.iarpi.erp.controller.response.BaseResponse
-import com.iarpi.erp.model.dto.UnitDto
+import com.iarpi.erp.model.dto.control.UnitDto
 import com.iarpi.erp.service.UnitService
 import org.springframework.web.bind.annotation.*
 

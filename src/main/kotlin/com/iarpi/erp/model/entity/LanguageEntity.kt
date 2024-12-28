@@ -1,6 +1,6 @@
 package com.iarpi.erp.model.entity
 
-import com.iarpi.erp.model.dto.LanguageDto
+import com.iarpi.erp.model.dto.control.LanguageDto
 import jakarta.persistence.*
 import lombok.Setter
 

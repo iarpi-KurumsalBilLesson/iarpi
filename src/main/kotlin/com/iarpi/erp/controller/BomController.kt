@@ -2,7 +2,7 @@ package com.iarpi.erp.controller
 
 import com.iarpi.erp.controller.request.*
 import com.iarpi.erp.controller.response.BaseResponse
-import com.iarpi.erp.model.dto.BomDto
+import com.iarpi.erp.model.dto.control.BomDto
 import com.iarpi.erp.service.BomService
 import org.springframework.web.bind.annotation.*
 
