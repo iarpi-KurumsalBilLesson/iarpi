@@ -1,28 +1,6 @@
-package com.iarpi.erp.model.dto
+package com.iarpi.erp.model.dto.control
 
-import com.iarpi.erp.model.entity.MaterialEntity
+import com.iarpi.erp.model.dto.MaterialHeadDto
+import com.iarpi.erp.model.dto.MaterialTextDto
 
-data class MaterialDto(
-    var id: Long?,
-    var docType: String,
-    var docTypeText: String,
-    var isPassive: Boolean
-)
-
-fun MaterialDto.convertToEntity(): MaterialEntity {
-    return MaterialEntity(
-        null,
-        this.docType,
-        this.docTypeText,
-        this.isPassive,
-    )
-}
-
-fun MaterialDto.convertToEntity(materialCode: String): MaterialEntity {
-    return MaterialEntity(
-        null,
-        materialCode,
-        this.docTypeText,
-        this.isPassive,
-    )
-}
+data class MaterialDto(val materialHeadDto: MaterialHeadDto, val materialTextDto: MaterialTextDto)
