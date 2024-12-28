@@ -1,0 +1,11 @@
+package com.iarpi.erp.service
+
+import com.iarpi.erp.model.dto.OperationDto
+
+interface OperationService {
+    fun getAll(): List<OperationDto>
+    fun getById(id: Long): OperationDto
+    fun createNewOperation(operationDto: OperationDto): OperationDto
+    fun updateOperation(id: Long, operationDto: OperationDto): OperationDto
+    fun deleteOperation(id: Long): String
+}
