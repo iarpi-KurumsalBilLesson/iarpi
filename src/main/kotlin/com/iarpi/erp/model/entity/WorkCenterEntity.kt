@@ -21,6 +21,10 @@ data class WorkCenterEntity(
 
     @Column(name = "IS_PASSIVE")
     var isPassive: Boolean,
+
+//    @ManyToOne
+//    @JoinColumn(name = "COM_CODE", referencedColumnName = "COM_CODE")
+//    var company: CompanyEntity?  // BSMGRIRPGEN001 ile ilişki
 )
 
 fun WorkCenterEntity.convertToDto(): WorkCenterDto {
