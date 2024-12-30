@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/test")
-class TestController(val itemService: ItemService) {
+class ItemController(val itemService: ItemService) {
 
     @PostMapping
     fun createNewItem(@RequestBody request: CreateItemRequest): BaseResponse<*> {
