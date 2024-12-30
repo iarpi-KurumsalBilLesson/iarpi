@@ -1,6 +1,6 @@
 package com.iarpi.erp.model.dto.control
 
-import com.iarpi.erp.model.entity.CostCenterEntity
+import com.iarpi.erp.model.entity.control.CostCenterEntity
 
 data class CostCenterDto(
     var id:Long?,

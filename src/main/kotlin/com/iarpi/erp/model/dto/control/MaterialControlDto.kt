@@ -1,6 +1,6 @@
 package com.iarpi.erp.model.dto.control
 
-import com.iarpi.erp.model.entity.MaterialEntity
+import com.iarpi.erp.model.entity.control.MaterialEntity
 
 data class MaterialControlDto(
     var id: Long?,

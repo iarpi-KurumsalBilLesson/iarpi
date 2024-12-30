@@ -5,10 +5,12 @@ import com.iarpi.erp.controller.request.UpdateMaterialHeadRequest
 import com.iarpi.erp.model.dto.MaterialDto
 import com.iarpi.erp.model.entity.MaterialHeadEntity
 import com.iarpi.erp.model.entity.MaterialTextEntity
+import com.iarpi.erp.model.entity.control.convertToDto
 import com.iarpi.erp.model.entity.convertToDto
 import com.iarpi.erp.model.exception.NotFoundException
 import com.iarpi.erp.repository.MaterialHeadRepository
 import com.iarpi.erp.service.*
+import com.iarpi.erp.service.control.*
 import org.springframework.stereotype.Service
 
 @Service

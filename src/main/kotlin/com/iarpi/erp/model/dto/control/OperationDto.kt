@@ -1,6 +1,6 @@
 package com.iarpi.erp.model.dto.control
 
-import com.iarpi.erp.model.entity.OperationEntity
+import com.iarpi.erp.model.entity.control.OperationEntity
 
 data class OperationDto(
     var id:Long?,
@@ -18,7 +18,7 @@ fun OperationDto.convertToEntity(): OperationEntity {
     )
 }
 
-fun OperationDto.convertToEntity(OperationCode:String):OperationEntity{
+fun OperationDto.convertToEntity(OperationCode:String): OperationEntity {
     return OperationEntity(
         null,
         OperationCode,

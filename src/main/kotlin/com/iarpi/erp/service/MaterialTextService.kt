@@ -8,6 +8,7 @@ interface MaterialTextService {
     fun getById(id: Long): MaterialTextDto
     fun updateMaterialHead(id: Long, request: UpdateMaterialTextRequest): MaterialTextDto
     fun deleteById(id: Long): String
+    fun getByHeadId(headId: Long): MaterialTextDto
 
 
 }

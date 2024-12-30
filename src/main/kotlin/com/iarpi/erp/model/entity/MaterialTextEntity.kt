@@ -1,6 +1,9 @@
 package com.iarpi.erp.model.entity
 
 import com.iarpi.erp.model.dto.MaterialTextDto
+import com.iarpi.erp.model.entity.control.CompanyEntity
+import com.iarpi.erp.model.entity.control.LanguageEntity
+import com.iarpi.erp.model.entity.control.MaterialEntity
 import jakarta.persistence.*
 import java.time.LocalDate
 

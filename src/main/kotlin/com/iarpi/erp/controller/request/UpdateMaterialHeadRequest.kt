@@ -1,7 +1,7 @@
 package com.iarpi.erp.controller.request
 
 data class UpdateMaterialHeadRequest(
-    val supplyType: Boolean,
+    val supplyType: Int,
     val netWeight: Float,
     val brutWeight: Float,
     val isBom: Int,

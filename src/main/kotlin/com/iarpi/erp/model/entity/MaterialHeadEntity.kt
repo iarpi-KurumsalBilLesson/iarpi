@@ -1,6 +1,7 @@
 package com.iarpi.erp.model.entity
 
 import com.iarpi.erp.model.dto.MaterialHeadDto
+import com.iarpi.erp.model.entity.control.*
 import jakarta.persistence.*
 import java.time.LocalDate
 
@@ -23,7 +24,7 @@ data class MaterialHeadEntity(
     var matDocUntil: LocalDate,
 
     @Column(name = "SUPPLYTYPE", nullable = false)
-    var supplyType: Boolean,
+    var supplyType: Int,
 
     @Column(name = "NET_WEIGHT")
     var netWeight: Float?, // burada sayi buyuklugu ile alakali problem olabilir

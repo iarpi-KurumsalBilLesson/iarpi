@@ -1,6 +1,6 @@
 package com.iarpi.erp.model.dto.control
 
-import com.iarpi.erp.model.entity.BomEntity
+import com.iarpi.erp.model.entity.control.BomEntity
 
 data class BomDto(
     var id:Long?,
@@ -18,7 +18,7 @@ fun BomDto.convertToEntity(): BomEntity {
     )
 }
 
-fun BomDto.convertToEntity(BomCode:String):BomEntity
+fun BomDto.convertToEntity(BomCode:String): BomEntity
 {
     return BomEntity(
         null,

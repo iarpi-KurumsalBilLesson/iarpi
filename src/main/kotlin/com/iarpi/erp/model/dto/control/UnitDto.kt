@@ -1,6 +1,6 @@
 package com.iarpi.erp.model.dto.control
 
-import com.iarpi.erp.model.entity.UnitEntity
+import com.iarpi.erp.model.entity.control.UnitEntity
 
 data class UnitDto(
     var id: Long?,

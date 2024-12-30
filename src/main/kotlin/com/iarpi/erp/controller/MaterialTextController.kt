@@ -25,6 +25,12 @@ class MaterialTextController(val materialTextService: MaterialTextService) {
         return BaseResponse.success(data)
     }
 
+    @GetMapping("/head/{id}")
+    fun getDetailByHeadId(@PathVariable id : Long) : BaseResponse<MaterialTextDto> {
+        val data = materialTextService.getByHeadId(id);
+        return BaseResponse.success(data)
+    }
+
     //todo: gerek var mı ?
     /*@PostMapping
     fun createNewMaterial(@RequestBody request: CreateNewMaterialHeadRequest): BaseResponse<MaterialDto> {

@@ -3,6 +3,8 @@ package com.iarpi.erp.controller.response
 import com.iarpi.erp.model.exception.BaseException
 import com.iarpi.erp.model.exception.error.IarpiError
 import org.springframework.http.HttpStatus
+import org.springframework.validation.BindException
+import org.springframework.web.bind.MethodArgumentNotValidException
 
 class BaseResponse<T>(
     val status: HttpStatus,
@@ -17,6 +19,10 @@ class BaseResponse<T>(
 
         fun failed(ex: BaseException, status: HttpStatus): BaseResponse<*> {
             return BaseResponse(status, ex.message, ex.error)
+        }
+        fun failed(ex: MethodArgumentNotValidException): BaseResponse<*> {
+            val error = IarpiError.BAD_REQUEST
+            return BaseResponse(error.status, ex.bindingResult.allErrors.get(0).defaultMessage, error)
         }
     }
 

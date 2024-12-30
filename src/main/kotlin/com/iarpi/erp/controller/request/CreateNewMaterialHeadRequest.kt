@@ -7,7 +7,7 @@ data class CreateNewMaterialHeadRequest(
     val docNumber : String,
     val matDocFrom : LocalDate,
     val matDocUntil : LocalDate,
-    val supplyType : Boolean,
+    val supplyType : Int,
     val netWeight : Float,
     val brutWeight : Float,
     val isBom : Int,

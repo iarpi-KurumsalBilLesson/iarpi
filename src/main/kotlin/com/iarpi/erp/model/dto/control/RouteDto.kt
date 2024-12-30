@@ -1,6 +1,6 @@
 package com.iarpi.erp.model.dto.control
 
-import com.iarpi.erp.model.entity.RouteEntity
+import com.iarpi.erp.model.entity.control.RouteEntity
 
 data class RouteDto(
     var id:Long?,
@@ -9,7 +9,7 @@ data class RouteDto(
     var isPassive:Boolean,
 )
 
-fun RouteDto.convertToEntity():RouteEntity{
+fun RouteDto.convertToEntity(): RouteEntity {
     return RouteEntity(
         null,
         this.docType,
@@ -18,7 +18,7 @@ fun RouteDto.convertToEntity():RouteEntity{
     )
 }
 
-fun RouteDto.convertToEntity(BomCode:String):RouteEntity{
+fun RouteDto.convertToEntity(BomCode:String): RouteEntity {
     return RouteEntity(
         null,
         BomCode,
