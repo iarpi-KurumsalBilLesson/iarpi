@@ -1,0 +1,448 @@
+-- Country Table
+CREATE TABLE BSMGRIRPGEN003
+(
+    id           SERIAL PRIMARY KEY,
+    COUNTRY_CODE VARCHAR(4)  NOT NULL UNIQUE,
+    COUNTRY_TEXT VARCHAR(80) NOT NULL
+);
+
+-- City Table
+CREATE TABLE BSMGRIRPGEN004
+(
+    id         SERIAL PRIMARY KEY,          -- Otomatik artan id
+    CITY_CODE  VARCHAR(4)  NOT NULL UNIQUE, -- CityCode benzersiz
+    CITY_TEXT  VARCHAR(80) NOT NULL,        -- Şehir metni
+    COUNTRY_ID INT,
+    CONSTRAINT fk_city_country FOREIGN KEY (COUNTRY_ID) REFERENCES BSMGRIRPGEN003 (id) ON DELETE SET NULL
+);
+
+-- Language Table
+CREATE TABLE BSMGRIRPGEN002
+(
+    id       SERIAL PRIMARY KEY,          -- Otomatik artan id
+    LAN_CODE VARCHAR(4)  NOT NULL UNIQUE, -- Dil kodu benzersiz
+    LAN_TEXT VARCHAR(80) NOT NULL         -- Dil metni
+);
+
+-- Company Table
+CREATE TABLE BSMGRIRPGEN001
+(
+    id       SERIAL PRIMARY KEY,          -- Otomatik artan id
+    COM_CODE VARCHAR(4)  NOT NULL UNIQUE, -- Şirket kodu benzersiz
+    COM_TEXT VARCHAR(80) NOT NULL         -- Şirket metni
+);
+
+-- Address Table
+CREATE TABLE BSMGRIRPGEN0011
+(
+    id              SERIAL PRIMARY KEY, -- Otomatik artan id
+    COM_CODE_ID     INT NOT NULL,       -- Şirket kodu foreign key
+    COUNTRY_CODE_ID INT NOT NULL,       -- Ülke foreign key
+    CITY_CODE_ID    INT NOT NULL,       -- Şehir foreign key
+    ADDRESS1        TEXT,               -- Adres satırı 1
+    ADDRESS2        TEXT,               -- Adres satırı 2
+    CONSTRAINT fk_address_company FOREIGN KEY (COM_CODE_ID) REFERENCES BSMGRIRPGEN001 (id) ON DELETE CASCADE,
+    CONSTRAINT fk_address_country FOREIGN KEY (COUNTRY_CODE_ID) REFERENCES BSMGRIRPGEN003 (id) ON DELETE CASCADE,
+    CONSTRAINT fk_address_city FOREIGN KEY (CITY_CODE_ID) REFERENCES BSMGRIRPGEN004 (id) ON DELETE CASCADE
+);
+
+-- Company Language M-M
+CREATE TABLE company_language
+(
+    company_id  INT NOT NULL,
+    language_id INT NOT NULL,
+    PRIMARY KEY (company_id, language_id),
+    CONSTRAINT fk_company_id FOREIGN KEY (company_id) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_language_id FOREIGN KEY (company_id) REFERENCES BSMGRIRPGEN001 (id)
+);
+
+-- Unit Table
+CREATE TABLE BSMGRIRPGEN005
+(
+    id             SERIAL PRIMARY KEY,
+    UNIT_CODE      VARCHAR(3)  NOT NULL,
+    UNIT_TEXT      VARCHAR(80) NOT NULL,
+    IS_MAIN_UNIT   BOOLEAN,
+    MAIN_UNIT_CODE VARCHAR(3)
+);
+-- Unit Table M-M
+CREATE TABLE company_unit
+(
+    company_id INT NOT NULL,
+    unit_id    INT NOT NULL,
+    PRIMARY KEY (company_id, unit_id),
+    CONSTRAINT fk_company_id FOREIGN KEY (company_id) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_unit_id FOREIGN KEY (unit_id) REFERENCES BSMGRIRPGEN005 (id)
+);
+
+-- Material Table
+CREATE TABLE BSMGRIRPMAT001
+(
+    id            SERIAL PRIMARY KEY,
+    DOC_TYPE      VARCHAR(4)  NOT NULL,
+    DOC_TYPE_TEXT VARCHAR(80) NOT NULL,
+    IS_PASSIVE    BOOLEAN
+);
+-- Material Table M-M
+CREATE TABLE company_material
+(
+    company_id  INT NOT NULL,
+    material_id INT NOT NULL,
+    PRIMARY KEY (company_id, material_id),
+    CONSTRAINT fk_company_id FOREIGN KEY (company_id) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_material_id FOREIGN KEY (material_id) REFERENCES BSMGRIRPMAT001 (id)
+);
+
+-- CostCenter Table
+CREATE TABLE BSMGRIRPCCM001
+(
+    id            SERIAL PRIMARY KEY,
+    DOC_TYPE      VARCHAR(4)  NOT NULL,
+    DOC_TYPE_TEXT VARCHAR(80) NOT NULL,
+    IS_PASSIVE    BOOLEAN
+);
+-- CostCenter Table M-M
+CREATE TABLE company_costCenter
+(
+    company_id    INT NOT NULL,
+    costCenter_id INT NOT NULL,
+    PRIMARY KEY (company_id, costCenter_id),
+    CONSTRAINT fk_company_id FOREIGN KEY (company_id) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_costCenter_id FOREIGN KEY (costCenter_id) REFERENCES BSMGRIRPCCM001 (id)
+);
+
+-- BOM Table
+CREATE TABLE BSMGRIRPBOM001
+(
+    id            SERIAL PRIMARY KEY,
+    DOC_TYPE      VARCHAR(4)  NOT NULL,
+    DOC_TYPE_TEXT VARCHAR(80) NOT NULL,
+    IS_PASSIVE    BOOLEAN
+);
+-- BOM Table M-M
+CREATE TABLE company_bom
+(
+    company_id INT NOT NULL,
+    bom_id     INT NOT NULL,
+    PRIMARY KEY (company_id, bom_id),
+    CONSTRAINT fk_company_id FOREIGN KEY (company_id) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_bom_id FOREIGN KEY (bom_id) REFERENCES BSMGRIRPBOM001 (id)
+);
+
+-- Route Table
+CREATE TABLE BSMGRIRPROT001
+(
+    id            SERIAL PRIMARY KEY,
+    DOC_TYPE      VARCHAR(4)  NOT NULL,
+    DOC_TYPE_TEXT VARCHAR(80) NOT NULL,
+    IS_PASSIVE    BOOLEAN
+);
+-- Route Table M-M
+CREATE TABLE company_route
+(
+    company_id INT NOT NULL,
+    route_id   INT NOT NULL,
+    PRIMARY KEY (company_id, route_id),
+    CONSTRAINT fk_company_id FOREIGN KEY (company_id) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_route_id FOREIGN KEY (route_id) REFERENCES BSMGRIRPROT001 (id)
+);
+
+-- Work-Center Table
+CREATE TABLE BSMGRIRPWCM001
+(
+    id            SERIAL PRIMARY KEY,
+    DOC_TYPE      VARCHAR(4)  NOT NULL,
+    DOC_TYPE_TEXT VARCHAR(80) NOT NULL,
+    IS_PASSIVE    BOOLEAN
+);
+-- Work-Center Table M-M
+CREATE TABLE company_workCenter
+(
+    company_id    INT NOT NULL,
+    workCenter_id INT NOT NULL,
+    PRIMARY KEY (company_id, workCenter_id),
+    CONSTRAINT fk_company_id FOREIGN KEY (company_id) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_workCenter_id FOREIGN KEY (workCenter_id) REFERENCES BSMGRIRPWCM001 (id)
+);
+
+-- Operation Table
+CREATE TABLE BSMGRIRPROT003
+(
+    id            SERIAL PRIMARY KEY,
+    DOC_TYPE      VARCHAR(4)  NOT NULL,
+    DOC_TYPE_TEXT VARCHAR(80) NOT NULL,
+    IS_PASSIVE    BOOLEAN
+);
+-- Operation Table M-M
+CREATE TABLE company_operation
+(
+    company_id   INT NOT NULL,
+    operation_id INT NOT NULL,
+    PRIMARY KEY (company_id, operation_id),
+    CONSTRAINT fk_company_id FOREIGN KEY (company_id) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_operation_id FOREIGN KEY (operation_id) REFERENCES BSMGRIRPROT003 (id)
+);
+
+CREATE TABLE material_head
+(
+    ID              SERIAL PRIMARY KEY,
+    COMPANY_ID      INT         NOT NULL,
+    MAT_DOC_TYPE_ID INT         NOT NULL,
+    DOC_NUMBER      VARCHAR(25) NOT NULL,
+    MAT_DOC_FROM    DATE        NOT NULL DEFAULT CURRENT_DATE,
+    MAT_DOC_UNTIL   DATE        NOT NULL DEFAULT CURRENT_DATE,
+    SUPPLYTYPE      BOOLEAN     NOT NULL,
+    ST_UNIT_ID      INT         NOT NULL,
+    NET_WEIGHT      DECIMAL(12, 3),
+    NW_UNIT         INT,
+    BRUT_WEIGHT     DECIMAL(12, 3),
+    BW_UNIT         INT,
+    IS_BOM          INT CHECK (IS_BOM IN (0, 1, 2)), --0: HAYIR / 1: EVET / 2: OLMAYACAK
+    BOM_DOC_TYPE    INT,
+    BOM_DOC_NUM     VARCHAR(25),
+    IS_ROUTE        INT CHECK (IS_BOM IN (0, 1, 2)), --0: HAYIR / 1: EVET / 2: OLMAYACAK
+    ROT_DOC_TYPE    INT,
+    ROT_DOC_NUM     VARCHAR(25),
+    IS_DELETED      BOOLEAN,
+    IS_PASSIVE      BOOLEAN,
+    CONSTRAINT fk_company_id FOREIGN KEY (COMPANY_ID) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_mat_doc_type FOREIGN KEY (MAT_DOC_TYPE_ID) REFERENCES BSMGRIRPMAT001 (id),
+    CONSTRAINT fk_st_unit FOREIGN KEY (ST_UNIT_ID) REFERENCES BSMGRIRPGEN005 (id),
+    CONSTRAINT fk_nw_unit FOREIGN KEY (NW_UNIT) REFERENCES BSMGRIRPGEN005 (id),
+    CONSTRAINT fk_bw_unit FOREIGN KEY (BW_UNIT) REFERENCES BSMGRIRPGEN005 (id),
+    CONSTRAINT fk_bom_doc_type FOREIGN KEY (BOM_DOC_TYPE) REFERENCES BSMGRIRPBOM001 (id),
+    CONSTRAINT fk_rot_doc_type FOREIGN KEY (ROT_DOC_TYPE) REFERENCES BSMGRIRPROT001 (id)
+);
+
+CREATE TABLE material_text
+(
+    ID              SERIAL PRIMARY KEY,
+    COMPANY_ID      INT          NOT NULL,
+    MAT_DOC_TYPE_ID INT          NOT NULL,
+    DOC_NUMBER      VARCHAR(25)  NOT NULL,
+    MAT_DOC_FROM    DATE         NOT NULL DEFAULT CURRENT_DATE,
+    MAT_DOC_UNTIL   DATE         NOT NULL DEFAULT CURRENT_DATE,
+    LAN_CODE_ID     INT          NOT NULL,
+    MATS_TEXT       VARCHAR(50)  NOT NULL,
+    MATLT_TEXT      VARCHAR(250) NOT NULL,
+    CONSTRAINT fk_company_id FOREIGN KEY (COMPANY_ID) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_mat_doc_type FOREIGN KEY (MAT_DOC_TYPE_ID) REFERENCES BSMGRIRPMAT001 (id),
+    CONSTRAINT fk_lan_code FOREIGN KEY (LAN_CODE_ID) REFERENCES BSMGRIRPGEN002 (id)
+);
+
+CREATE TABLE cost_center_head
+(
+    ID                SERIAL PRIMARY KEY,
+    COMPANY_ID        INT         NOT NULL,
+    CCM_DOC_TYPE_ID   INT         NOT NULL,
+    CCM_DOC_NUMBER    VARCHAR(25) NOT NULL,
+    CCM_DOC_FROM      DATE        NOT NULL DEFAULT CURRENT_DATE,
+    CCM_DOC_UNTIL     DATE        NOT NULL DEFAULT CURRENT_DATE,
+    MAIN_CCM_DOC_TYPE VARCHAR(4),
+    MAIN_CCM_DOC_NUM  VARCHAR(25),
+    IS_DELETED        BOOLEAN, --0: Hayır 1: Evet
+    IS_PASSIVE        BOOLEAN, --0: Hayır 1: Evet
+    CONSTRAINT fk_company_id FOREIGN KEY (COMPANY_ID) REFERENCES BSMGRIRPGEN001 (id)
+);
+
+CREATE TABLE cost_center_text
+(
+    ID              SERIAL PRIMARY KEY,
+    COMPANY_ID      INT          NOT NULL,
+    CCM_DOC_TYPE_ID INT          NOT NULL,
+    CCM_DOC_NUMBER  VARCHAR(25)  NOT NULL,
+    CCM_DOC_FROM    DATE         NOT NULL DEFAULT CURRENT_DATE,
+    CCM_DOC_UNTIL   DATE         NOT NULL DEFAULT CURRENT_DATE,
+    LAN_CODE_ID     INT          NOT NULL,
+    CCMS_TEXT       VARCHAR(50)  NOT NULL,
+    CCML_TEXT       VARCHAR(250) NOT NULL,
+    CONSTRAINT fk_company_id FOREIGN KEY (COMPANY_ID) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_mat_doc_type FOREIGN KEY (CCM_DOC_TYPE_ID) REFERENCES BSMGRIRPCCM001 (id),
+    CONSTRAINT fk_lan_code FOREIGN KEY (LAN_CODE_ID) REFERENCES BSMGRIRPGEN002 (id)
+);
+
+CREATE TABLE work_center_head
+(
+    ID                SERIAL PRIMARY KEY,
+    COMPANY_ID        INT         NOT NULL,
+    WCM_DOC_TYPE_ID   INT         NOT NULL,
+    WCM_DOC_NUMBER    VARCHAR(25) NOT NULL,
+    WCM_DOC_FROM      DATE        NOT NULL DEFAULT CURRENT_DATE,
+    WCM_DOC_UNTIL     DATE        NOT NULL DEFAULT CURRENT_DATE,
+    MAIN_WCM_DOC_TYPE VARCHAR(4),
+    MAIN_WCM_DOC_NUM  VARCHAR(25),
+    CCM_DOC_TYPE_ID   INT         NOT NULL,
+    CCM_DOC_NUMBER    INT         NOT NULL,
+    WORK_TIME         DECIMAL(3, 2),
+    IS_DELETED        BOOLEAN, --0: Hayır 1: Evet
+    IS_PASSIVE        BOOLEAN, --0: Hayır 1: Evet
+    CONSTRAINT fk_company_id FOREIGN KEY (COMPANY_ID) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_wcm_doc_type FOREIGN KEY (WCM_DOC_TYPE_ID) REFERENCES BSMGRIRPWCM001 (id),
+    CONSTRAINT fk_ccm_doc_type FOREIGN KEY (CCM_DOC_TYPE_ID) REFERENCES BSMGRIRPCCM001 (id)
+);
+
+CREATE TABLE work_center_text
+(
+    ID              SERIAL PRIMARY KEY,
+    COMPANY_ID      INT          NOT NULL,
+    WCM_DOC_TYPE_ID INT          NOT NULL,
+    WCM_DOC_NUMBER  VARCHAR(25)  NOT NULL,
+    WCM_DOC_FROM    DATE         NOT NULL DEFAULT CURRENT_DATE,
+    WCM_DOC_UNTIL   DATE         NOT NULL DEFAULT CURRENT_DATE,
+    LAN_CODE_ID     INT          NOT NULL,
+    WCMS_TEXT       VARCHAR(50)  NOT NULL,
+    WCML_TEXT       VARCHAR(250) NOT NULL,
+    CONSTRAINT fk_company_id FOREIGN KEY (COMPANY_ID) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_wcm_doc_type FOREIGN KEY (WCM_DOC_TYPE_ID) REFERENCES BSMGRIRPWCM001 (id),
+    CONSTRAINT fk_lan_code FOREIGN KEY (LAN_CODE_ID) REFERENCES BSMGRIRPGEN002 (id)
+);
+
+CREATE TABLE work_center_operation
+(
+    ID              SERIAL PRIMARY KEY,
+    COMPANY_ID      INT         NOT NULL,
+    WCM_DOC_TYPE_ID INT         NOT NULL,
+    WCM_DOC_NUMBER  VARCHAR(25) NOT NULL,
+    WCM_DOC_FROM    DATE        NOT NULL DEFAULT CURRENT_DATE,
+    WCM_DOC_UNTIL   DATE        NOT NULL DEFAULT CURRENT_DATE,
+    OPR_DOC_TYPE    VARCHAR(4)  NOT NULL,
+    CONSTRAINT fk_company_id FOREIGN KEY (COMPANY_ID) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_wcm_doc_type FOREIGN KEY (WCM_DOC_TYPE_ID) REFERENCES BSMGRIRPWCM001 (id)
+);
+
+CREATE TABLE bom_head
+(
+    ID              SERIAL PRIMARY KEY,
+    COMPANY_ID      INT           NOT NULL,
+    BOM_DOC_TYPE_ID INT           NOT NULL,
+    BOM_DOC_NUMBER  VARCHAR(25)   NOT NULL,
+    BOM_DOC_FROM    DATE          NOT NULL DEFAULT CURRENT_DATE,
+    BOM_DOC_UNTIL   DATE          NOT NULL DEFAULT CURRENT_DATE,
+    MAT_DOC_TYPE    INT           NOT NULL,
+    MAT_DOC_NUM     VARCHAR(25)   NOT NULL,
+    QUANTITY        DECIMAL(5, 2) NOT NULL,
+    IS_DELETED      BOOLEAN, --0: Hayır 1: Evet
+    IS_PASSIVE      BOOLEAN, --0: Hayır 1: Evet
+    DRAW_NUM        BOOLEAN, --0: Hayır 1: Evet
+    CONSTRAINT fk_company_id FOREIGN KEY (COMPANY_ID) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_bom_doc_type FOREIGN KEY (BOM_DOC_TYPE_ID) REFERENCES BSMGRIRPBOM001 (id),
+    CONSTRAINT fk_mat_doc_type FOREIGN KEY (MAT_DOC_TYPE) REFERENCES BSMGRIRPMAT001 (id)
+);
+
+CREATE TABLE bom_content
+(
+    ID                SERIAL PRIMARY KEY,
+    COMPANY_ID        INT           NOT NULL,
+    BOM_DOC_TYPE_ID   INT           NOT NULL,
+    BOM_DOC_NUMBER    VARCHAR(25)   NOT NULL,
+    BOM_DOC_FROM      DATE          NOT NULL DEFAULT CURRENT_DATE,
+    BOM_DOC_UNTIL     DATE          NOT NULL DEFAULT CURRENT_DATE,
+    MAT_DOC_TYPE_ID   INT           NOT NULL,
+    MAT_DOC_NUMBER    VARCHAR(25)   NOT NULL,
+    CONTENT_NUM       INT           NOT NULL,
+    COMPONENT         VARCHAR(25)   NOT NULL,
+    COMP_BOM_DOC_TYPE INT           NOT NULL,
+    COMP_BOM_DOC_NUM  VARCHAR(25)   NOT NULL,
+    QUANTITY          DECIMAL(5, 2) NOT NULL,
+    CONSTRAINT fk_company_id FOREIGN KEY (COMPANY_ID) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_bom_doc_type FOREIGN KEY (BOM_DOC_TYPE_ID) REFERENCES BSMGRIRPBOM001 (id),
+    CONSTRAINT fk_mat_doc_type FOREIGN KEY (MAT_DOC_TYPE_ID) REFERENCES BSMGRIRPMAT001 (id),
+    CONSTRAINT fk_comp_bom_doc_type FOREIGN KEY (BOM_DOC_TYPE_ID) REFERENCES BSMGRIRPBOM001 (id)
+);
+
+CREATE TABLE rot_head
+(
+    ID              SERIAL PRIMARY KEY,
+    COMPANY_ID      INT           NOT NULL,
+    ROT_DOC_TYPE_ID INT           NOT NULL,
+    ROT_DOC_NUMBER  VARCHAR(25)   NOT NULL,
+    ROT_DOC_FROM    DATE          NOT NULL DEFAULT CURRENT_DATE,
+    ROT_DOC_UNTIL   DATE          NOT NULL DEFAULT CURRENT_DATE,
+    MAT_DOC_TYPE    INT           NOT NULL,
+    MAT_DOC_NUM     VARCHAR(25)   NOT NULL,
+    QUANTITY        DECIMAL(5, 2) NOT NULL,
+    IS_DELETED      BOOLEAN, --0: Hayır 1: Evet
+    IS_PASSIVE      BOOLEAN, --0: Hayır 1: Evet
+    DRAW_NUM        BOOLEAN, --0: Hayır 1: Evet
+    CONSTRAINT fk_company_id FOREIGN KEY (COMPANY_ID) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_rot_doc_type FOREIGN KEY (ROT_DOC_TYPE_ID) REFERENCES BSMGRIRPBOM001 (id),
+    CONSTRAINT fk_mat_doc_type FOREIGN KEY (MAT_DOC_TYPE) REFERENCES BSMGRIRPMAT001 (id)
+);
+
+CREATE TABLE rot_operation_content
+(
+    ID              SERIAL PRIMARY KEY,
+    COMPANY_ID      INT         NOT NULL,
+    ROT_DOC_TYPE_ID INT         NOT NULL,
+    ROT_DOC_NUMBER  VARCHAR(25) NOT NULL,
+    ROT_DOC_FROM    DATE        NOT NULL DEFAULT CURRENT_DATE,
+    ROT_DOC_UNTIL   DATE        NOT NULL DEFAULT CURRENT_DATE,
+    MAT_DOC_TYPE_ID INT         NOT NULL,
+    MAT_DOC_NUMBER  VARCHAR(25) NOT NULL,
+    OPR_NUM         INT         NOT NULL,
+    WCM_DOC_TYPE_ID INT         NOT NULL,
+    WCM_DOC_NUMBER  VARCHAR(25) NOT NULL,
+    OPR_DOC_TYPE    VARCHAR(4)  NOT NULL,
+    SETUP_TIME      DECIMAL(3, 2),
+    MACHINE_TIME    DECIMAL(3, 2),
+    LABOUR_TIME     DECIMAL(3, 2),
+    CONSTRAINT fk_company_id FOREIGN KEY (COMPANY_ID) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_rot_doc_type FOREIGN KEY (ROT_DOC_TYPE_ID) REFERENCES BSMGRIRPBOM001 (id), --BURADAA İLİŞKİDE SORUN OLABİLİR
+    CONSTRAINT fk_mat_doc_type FOREIGN KEY (MAT_DOC_TYPE_ID) REFERENCES BSMGRIRPMAT001 (id),
+    CONSTRAINT fk_wcm_doc_type FOREIGN KEY (WCM_DOC_TYPE_ID) REFERENCES BSMGRIRPWCM001 (id)
+);
+
+CREATE TABLE rot_bom_content
+(
+    ID              SERIAL PRIMARY KEY,
+    COMPANY_ID      INT         NOT NULL,
+    ROT_DOC_TYPE_ID INT         NOT NULL,
+    ROT_DOC_NUMBER  VARCHAR(25) NOT NULL,
+    ROT_DOC_FROM    DATE        NOT NULL DEFAULT CURRENT_DATE,
+    ROT_DOC_UNTIL   DATE        NOT NULL DEFAULT CURRENT_DATE,
+    MAT_DOC_TYPE_ID INT         NOT NULL,
+    MAT_DOC_NUMBER  VARCHAR(25) NOT NULL,
+    OPR_NUM         INT         NOT NULL,
+    BOM_DOC_TYPE_ID INT         NOT NULL,
+    BOM_DOC_NUMBER  INT         NOT NULL,
+    CONTENT_NUM     INT         NOT NULL,
+    COMPONENT       VARCHAR(25),
+    QUANTITY        DECIMAL(5, 2),
+    CONSTRAINT fk_company_id FOREIGN KEY (COMPANY_ID) REFERENCES BSMGRIRPGEN001 (id),
+    CONSTRAINT fk_rot_doc_type FOREIGN KEY (ROT_DOC_TYPE_ID) REFERENCES BSMGRIRPBOM001 (id), --BURADA İLİŞKİDE SORUN OLABİLİR
+    CONSTRAINT fk_mat_doc_type FOREIGN KEY (MAT_DOC_TYPE_ID) REFERENCES BSMGRIRPMAT001 (id),
+    CONSTRAINT fk_bom_doc_type FOREIGN KEY (BOM_DOC_NUMBER) REFERENCES BSMGRIRPBOM001 (id)
+);
+
+INSERT INTO BSMGRIRPGEN001 (com_code, com_text)
+VALUES ('COM1', 'trying company');
+
+INSERT INTO BSMGRIRPGEN002 (lan_code, lan_text)
+VALUES ('TRY', 'trying language');
+
+INSERT INTO BSMGRIRPGEN003 (country_code, country_text)
+VALUES ('TRU', 'test');
+
+INSERT INTO BSMGRIRPGEN004 (city_code, city_text, COUNTRY_ID)
+VALUES ('CTY1', 'deneme', 1);
+
+INSERT INTO BSMGRIRPGEN005 (unit_code, unit_text, is_main_unit, main_unit_code)
+VALUES ('UNI', 'deneme', TRUE, 'DN');
+
+INSERT INTO BSMGRIRPMAT001 (doc_type, doc_type_text, is_passive)
+VALUES ('DOC1', 'deneme', false);
+
+INSERT INTO BSMGRIRPCCM001 (doc_type, doc_type_text, is_passive)
+VALUES ('DOC2', 'deneme', false);
+
+INSERT INTO BSMGRIRPBOM001 (doc_type, doc_type_text, is_passive)
+VALUES ('DOC3', 'deneme', false);
+
+INSERT INTO BSMGRIRPROT001 (doc_type, doc_type_text, is_passive)
+VALUES ('DOC3', 'deneme', false);
+
+INSERT INTO BSMGRIRPROT001 (doc_type, doc_type_text, is_passive)
+VALUES ('DOC3', 'deneme', false);
+
+INSERT INTO BSMGRIRPROT003 (doc_type, doc_type_text, is_passive)
+VALUES ('DOC3', 'deneme', false);
