@@ -184,7 +184,7 @@ CREATE TABLE company_operation
 );
 
 
-CREATE TABLE "BSMGRIRPMATHEAD" --> OK
+CREATE TABLE BSMGRIRPMATHEAD --> OK
 (
     id            SERIAL PRIMARY KEY,
     COM_ID        INT                NOT NULL,
