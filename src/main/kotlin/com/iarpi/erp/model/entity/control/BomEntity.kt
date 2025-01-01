@@ -1,5 +1,6 @@
 package com.iarpi.erp.model.entity.control
 
+import com.iarpi.erp.model.dto.control.BomDto
 import jakarta.persistence.*
 
 
@@ -21,3 +22,13 @@ data class BomEntity(
     @Column(name = "IS_PASSIVE")
     var isPassive: Boolean,
 )
+
+fun BomEntity.convertToDto(): BomDto {
+    return BomDto(
+        this.id,
+        this.docType,
+        this.docText,
+        this.isPassive,
+    )
+
+}
