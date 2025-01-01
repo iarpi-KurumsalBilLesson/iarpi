@@ -16,18 +16,13 @@ class UnitController(
 ) {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun createNewUnit(
-        @Valid @RequestBody request: CreateUnitRequest
-    ): BaseResponse<UnitDto> {
+    fun createNewUnit(@Valid @RequestBody request: CreateUnitRequest): BaseResponse<UnitDto> {
         val unit = unitService.createUnit(request)
         return BaseResponse.success(unit)
     }
 
     @PutMapping("/{id}")
-    fun updateUnit(
-        @PathVariable id: Long,
-        @Valid @RequestBody request: UpdateUnitRequest
-    ): BaseResponse<UnitDto> {
+    fun updateUnit(@PathVariable id: Long, @Valid @RequestBody request: UpdateUnitRequest): BaseResponse<UnitDto> {
         val unit = unitService.updateUnit(id, request)
         return BaseResponse.success(unit)
     }

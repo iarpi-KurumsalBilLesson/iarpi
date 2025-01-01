@@ -1,9 +1,7 @@
 package com.iarpi.erp.model.entity.control
 
-import com.iarpi.erp.model.dto.control.MaterialDto
 import com.iarpi.erp.model.dto.control.WorkCenterDto
 import jakarta.persistence.*
-import org.hibernate.jdbc.Work
 
 @Entity
 @Table(name = "BSMGRIRPWCM001")

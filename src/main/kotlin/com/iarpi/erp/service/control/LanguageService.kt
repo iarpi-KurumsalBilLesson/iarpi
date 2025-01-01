@@ -1,7 +1,7 @@
 package com.iarpi.erp.service.control
 
-import com.iarpi.erp.controller.control.request.UpdateLanguageRequest
 import com.iarpi.erp.controller.control.request.CreateLanguageRequest
+import com.iarpi.erp.controller.control.request.UpdateLanguageRequest
 
 
 interface LanguageService {

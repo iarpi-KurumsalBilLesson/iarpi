@@ -1,4 +1,3 @@
-
 package com.iarpi.erp.model.entity.control
 
 import jakarta.persistence.*

@@ -1,8 +1,8 @@
 package com.iarpi.erp.service.impl
 
-import com.iarpi.erp.controller.request.*
+import com.iarpi.erp.controller.request.CreateRotOprContentRequest
+import com.iarpi.erp.controller.request.UpdateRotOprContentRequest
 import com.iarpi.erp.repository.RotOprContentRepository
-import com.iarpi.erp.service.RotHeadService
 import com.iarpi.erp.service.RotOprContentService
 import org.springframework.stereotype.Service
 

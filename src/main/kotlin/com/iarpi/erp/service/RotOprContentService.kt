@@ -1,7 +1,7 @@
 package com.iarpi.erp.service
 
-import com.iarpi.erp.controller.request.UpdateRotOprContentRequest
 import com.iarpi.erp.controller.request.CreateRotOprContentRequest
+import com.iarpi.erp.controller.request.UpdateRotOprContentRequest
 
 interface RotOprContentService {
     fun createNewRotOprContent(request: CreateRotOprContentRequest)

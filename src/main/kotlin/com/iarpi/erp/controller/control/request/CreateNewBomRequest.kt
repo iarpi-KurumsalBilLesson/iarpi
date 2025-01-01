@@ -8,7 +8,7 @@ data class CreateNewBomRequest(
     var isPassive: Boolean,
 )
 
-fun CreateNewBomRequest.convertToEntity(): BomEntity{
+fun CreateNewBomRequest.convertToEntity(): BomEntity {
     return BomEntity(
         null,
         this.docType,

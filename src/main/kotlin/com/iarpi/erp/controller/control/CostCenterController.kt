@@ -1,7 +1,7 @@
 package com.iarpi.erp.controller.control
 
-import com.iarpi.erp.controller.request.CreateCostCenterRequest
 import com.iarpi.erp.controller.control.request.UpdateCostCenterRequest
+import com.iarpi.erp.controller.request.CreateCostCenterRequest
 import com.iarpi.erp.controller.response.BaseResponse
 import com.iarpi.erp.model.dto.control.CostCenterDto
 import com.iarpi.erp.service.control.CostCenterService
@@ -18,7 +18,10 @@ class CostCenterController(val costCenterService: CostCenterService) {
     }
 
     @PutMapping("/{id}")
-    fun updateCostCenter(@PathVariable id: Long, @RequestBody request: UpdateCostCenterRequest): BaseResponse<CostCenterDto> {
+    fun updateCostCenter(
+        @PathVariable id: Long,
+        @RequestBody request: UpdateCostCenterRequest
+    ): BaseResponse<CostCenterDto> {
         val data = costCenterService.updateCostCenter(id, request)
         return BaseResponse.success(data)
     }

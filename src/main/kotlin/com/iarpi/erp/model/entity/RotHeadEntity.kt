@@ -1,7 +1,6 @@
 package com.iarpi.erp.model.entity
 
 import com.iarpi.erp.model.entity.control.CompanyEntity
-import com.iarpi.erp.model.entity.control.RouteEntity
 import jakarta.persistence.*
 import java.math.BigDecimal
 import java.time.LocalDate

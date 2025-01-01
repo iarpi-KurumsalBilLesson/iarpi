@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/bom/head")
-data class BomHeadController(val bomHeadService : BomHeadService)
-{
+data class BomHeadController(val bomHeadService: BomHeadService) {
     @PostMapping
     fun createNewBomHead(@RequestBody request: CreateBomHeadRequest): BaseResponse<*> {
         val data = bomHeadService.createNewBomHead(request)

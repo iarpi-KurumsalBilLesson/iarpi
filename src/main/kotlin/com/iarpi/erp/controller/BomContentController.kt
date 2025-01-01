@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/bom/content")
-class BomContentController(val bomContentService : BomContentService) {
+class BomContentController(val bomContentService: BomContentService) {
 
     @PostMapping
     fun createNewBomContent(@RequestBody request: CreateBomContentRequest): BaseResponse<*> {

@@ -3,7 +3,6 @@ package com.iarpi.erp.controller.control
 import com.iarpi.erp.controller.control.request.CreateWorkCenterRequest
 import com.iarpi.erp.controller.control.request.UpdateWorkCenterRequest
 import com.iarpi.erp.controller.response.BaseResponse
-import com.iarpi.erp.model.dto.BaseResponse
 import com.iarpi.erp.model.dto.control.WorkCenterDto
 import com.iarpi.erp.service.control.WorkCenterService
 import jakarta.validation.Valid
@@ -24,7 +23,10 @@ class WorkCenterController(
     }
 
     @PutMapping("/{id}")
-    fun updateWorkCenter(@PathVariable id: Long, @Valid @RequestBody request: UpdateWorkCenterRequest): BaseResponse<WorkCenterDto> {
+    fun updateWorkCenter(
+        @PathVariable id: Long,
+        @Valid @RequestBody request: UpdateWorkCenterRequest
+    ): BaseResponse<WorkCenterDto> {
         val workCenter = workCenterService.updateWorkCenter(id, request)
         return BaseResponse.success(workCenter)
     }

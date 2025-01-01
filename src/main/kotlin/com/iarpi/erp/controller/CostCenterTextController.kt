@@ -1,7 +1,6 @@
 package com.iarpi.erp.controller
 
 import com.iarpi.erp.controller.request.CreateCostCenterTextRequest
-import com.iarpi.erp.controller.request.UpdateCostCenterHeadRequest
 import com.iarpi.erp.controller.request.UpdateCostCenterTextRequest
 import com.iarpi.erp.controller.response.BaseResponse
 import com.iarpi.erp.service.CostCenterTextService
@@ -18,7 +17,10 @@ data class CostCenterTextController(val costCenterTextService: CostCenterTextSer
     }
 
     @PutMapping("/{id}")
-    fun updateCostCenterHead(@PathVariable id: Long, @RequestBody request: UpdateCostCenterTextRequest): BaseResponse<*> {
+    fun updateCostCenterHead(
+        @PathVariable id: Long,
+        @RequestBody request: UpdateCostCenterTextRequest
+    ): BaseResponse<*> {
         val data = costCenterTextService.updateCostCenterText(request)
         return BaseResponse.success(data)
 

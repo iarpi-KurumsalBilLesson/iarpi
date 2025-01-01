@@ -1,7 +1,7 @@
 package com.iarpi.erp.service.control
 
-import com.iarpi.erp.controller.control.request.UpdateBomRequest
 import com.iarpi.erp.controller.control.request.CreateNewBomRequest
+import com.iarpi.erp.controller.control.request.UpdateBomRequest
 import com.iarpi.erp.model.dto.control.BomDto
 
 

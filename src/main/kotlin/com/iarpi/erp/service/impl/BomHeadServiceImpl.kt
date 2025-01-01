@@ -3,11 +3,11 @@ package com.iarpi.erp.service.impl
 import com.iarpi.erp.controller.request.CreateBomHeadRequest
 import com.iarpi.erp.controller.request.UpdateBomHeadRequest
 import com.iarpi.erp.repository.BomHeadRepository
-import org.springframework.stereotype.Service
 import com.iarpi.erp.service.BomHeadService
+import org.springframework.stereotype.Service
 
 @Service
-data class BomHeadServiceImpl(val bomHeadRepository: BomHeadRepository) : BomHeadService{
+data class BomHeadServiceImpl(val bomHeadRepository: BomHeadRepository) : BomHeadService {
 
     override fun createNewBomHead(request: CreateBomHeadRequest) {
         TODO("Not yet implemented")

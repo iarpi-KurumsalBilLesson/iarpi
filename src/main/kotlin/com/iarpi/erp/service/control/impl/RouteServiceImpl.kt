@@ -23,7 +23,7 @@ class RouteServiceImpl(
     override fun createRoute(request: CreateRouteRequest): RouteDto {
         val company = companyRepository.findById(request.companyId)
             .orElseThrow { NotFoundException("Company not found with id: ${request.companyId}") }
-        
+
         val entity = request.convertToEntity(company)
         return routeRepository.save(entity).convertToDto()
     }
@@ -32,7 +32,7 @@ class RouteServiceImpl(
     override fun updateRoute(id: Long, request: UpdateRouteRequest): RouteDto {
         val entity = routeRepository.findById(id)
             .orElseThrow { NotFoundException("Route not found with id: $id") }
-        
+
         val updatedEntity = request.applyUpdatesTo(entity)
         return routeRepository.save(updatedEntity).convertToDto()
     }

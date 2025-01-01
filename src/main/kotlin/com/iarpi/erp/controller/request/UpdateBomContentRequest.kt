@@ -1,5 +1,5 @@
 package com.iarpi.erp.controller.request
 
-data class UpdateBomContentRequest (
+data class UpdateBomContentRequest(
     val content: String,
 )

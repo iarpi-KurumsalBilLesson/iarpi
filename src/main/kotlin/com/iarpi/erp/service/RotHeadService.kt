@@ -1,7 +1,7 @@
 package com.iarpi.erp.service
 
-import com.iarpi.erp.controller.request.UpdateRotHeadRequest
 import com.iarpi.erp.controller.request.CreateRotHeadRequest
+import com.iarpi.erp.controller.request.UpdateRotHeadRequest
 
 interface RotHeadService {
     fun createNewRotHead(request: CreateRotHeadRequest)

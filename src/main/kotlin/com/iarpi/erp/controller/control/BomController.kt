@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/bom")
-class BomController(val bomService: BomService)
-{
+class BomController(val bomService: BomService) {
 
     @PostMapping
     fun createNewBom(@RequestBody request: CreateNewBomRequest): BaseResponse<BomDto> {
@@ -21,7 +20,7 @@ class BomController(val bomService: BomService)
 
     @PutMapping("/{id}")
     fun updateBom(@PathVariable id: Long, @RequestBody request: UpdateBomRequest): BaseResponse<BomDto> {
-        val data = bomService.updateBom(id,request)
+        val data = bomService.updateBom(id, request)
 
         return BaseResponse.success(data)
 

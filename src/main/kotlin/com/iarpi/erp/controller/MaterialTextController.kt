@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/material/text")
-class MaterialTextController(val materialTextService : MaterialTextService) {
+class MaterialTextController(val materialTextService: MaterialTextService) {
 
     @PostMapping
     fun createNewMaterialText(@RequestBody request: CreateMaterialTextRequest): BaseResponse<*> {

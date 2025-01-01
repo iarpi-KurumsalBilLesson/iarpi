@@ -1,6 +1,5 @@
 package com.iarpi.erp.model.entity
 
-import com.iarpi.erp.model.entity.control.CompanyEntity
 import jakarta.persistence.*
 import java.math.BigDecimal
 
@@ -10,7 +9,11 @@ data class RotBomContentEntity(
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rot_bom_content_sequence")
-    @SequenceGenerator(name = "rot_bom_content_sequence", sequenceName = "bsmgrirprotbomcontent_id_seq", allocationSize = 1)
+    @SequenceGenerator(
+        name = "rot_bom_content_sequence",
+        sequenceName = "bsmgrirprotbomcontent_id_seq",
+        allocationSize = 1
+    )
     val id: Long,
 
     @Column(name = "OPR_NUM", nullable = false)

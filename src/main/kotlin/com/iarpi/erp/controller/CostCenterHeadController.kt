@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/costCenter/head")
-data class CostCenterHeadController(val costCenterHeadService: CostCenterHeadService)
-{
+data class CostCenterHeadController(val costCenterHeadService: CostCenterHeadService) {
     @PostMapping
     fun createNewCostCenterHead(@RequestBody request: CreateCostCenterHeadRequest): BaseResponse<*> {
         val data = costCenterHeadService.createNewCostCenterHead(request)
@@ -18,7 +17,10 @@ data class CostCenterHeadController(val costCenterHeadService: CostCenterHeadSer
     }
 
     @PutMapping("/{id}")
-    fun updateCostCenterHead(@PathVariable id: Long, @RequestBody request: UpdateCostCenterHeadRequest): BaseResponse<*> {
+    fun updateCostCenterHead(
+        @PathVariable id: Long,
+        @RequestBody request: UpdateCostCenterHeadRequest
+    ): BaseResponse<*> {
         val data = costCenterHeadService.updateCostCenterHead(request)
         return BaseResponse.success(data)
 

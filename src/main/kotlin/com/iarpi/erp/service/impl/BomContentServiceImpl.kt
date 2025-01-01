@@ -3,11 +3,11 @@ package com.iarpi.erp.service.impl
 import com.iarpi.erp.controller.request.CreateBomContentRequest
 import com.iarpi.erp.controller.request.UpdateBomContentRequest
 import com.iarpi.erp.repository.BomContentRepository
-import org.springframework.stereotype.Service
 import com.iarpi.erp.service.BomContentService
+import org.springframework.stereotype.Service
 
 @Service
-data class BomContentServiceImpl(val bomContentRepository : BomContentRepository) : BomContentService {
+data class BomContentServiceImpl(val bomContentRepository: BomContentRepository) : BomContentService {
     override fun createNewBomContent(request: CreateBomContentRequest) {
         TODO("Not yet implemented")
     }

@@ -1,5 +1,5 @@
 package com.iarpi.erp.controller.request
 
-data class CreateBomContentRequest (
-    val deneme : String,
+data class CreateBomContentRequest(
+    val deneme: String,
 )

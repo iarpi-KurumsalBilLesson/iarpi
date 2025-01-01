@@ -18,14 +18,14 @@ data class AddressEntity(
     var address2: String,
 
     @OneToOne
-    @JoinColumn(name = "COM_CODE_ID",referencedColumnName = "id")
+    @JoinColumn(name = "COM_CODE_ID", referencedColumnName = "id")
     var companyEntity: CompanyEntity,
 
     @OneToOne
-    @JoinColumn(name = "COUNTRY_CODE_ID",referencedColumnName = "id")
+    @JoinColumn(name = "COUNTRY_CODE_ID", referencedColumnName = "id")
     var countryEntity: CountryEntity,
 
     @OneToOne
-    @JoinColumn(name = "CITY_CODE_ID",referencedColumnName = "id")
+    @JoinColumn(name = "CITY_CODE_ID", referencedColumnName = "id")
     var cityEntity: CityEntity
 )

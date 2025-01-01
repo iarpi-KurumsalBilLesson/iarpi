@@ -23,7 +23,7 @@ class OperationServiceImpl(
     override fun createOperation(request: CreateOperationRequest): OperationDto {
         val company = companyRepository.findById(request.companyId)
             .orElseThrow { NotFoundException("request.companyId.toString()") }
-        
+
         val entity = request.convertToEntity(company)
         return operationRepository.save(entity).convertToDto()
     }
@@ -32,7 +32,7 @@ class OperationServiceImpl(
     override fun updateOperation(id: Long, request: UpdateOperationRequest): OperationDto {
         val entity = operationRepository.findById(id)
             .orElseThrow { NotFoundException("id.toString()") }
-        
+
         val updatedEntity = request.applyUpdatesTo(entity)
         return operationRepository.save(updatedEntity).convertToDto()
     }

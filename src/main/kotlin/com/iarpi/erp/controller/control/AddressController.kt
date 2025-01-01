@@ -1,15 +1,14 @@
 package com.iarpi.erp.controller.control
 
-import com.iarpi.erp.controller.control.request.UpdateAddressRequest
 import com.iarpi.erp.controller.control.request.CreateAddressRequest
+import com.iarpi.erp.controller.control.request.UpdateAddressRequest
 import com.iarpi.erp.controller.response.BaseResponse
 import com.iarpi.erp.service.control.AddressService
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/address")
-data class AddressController(val addressService: AddressService)
-{
+data class AddressController(val addressService: AddressService) {
     @PostMapping
     fun createNewAddress(@RequestBody request: CreateAddressRequest): BaseResponse<*> {
         val data = addressService.createAddress(request)

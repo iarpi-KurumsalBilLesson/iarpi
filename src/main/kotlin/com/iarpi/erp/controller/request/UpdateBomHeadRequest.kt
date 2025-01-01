@@ -1,5 +1,5 @@
 package com.iarpi.erp.controller.request
 
-data class UpdateBomHeadRequest (
+data class UpdateBomHeadRequest(
     val deneme: String,
 )

@@ -3,7 +3,6 @@ package com.iarpi.erp.controller
 import com.iarpi.erp.controller.request.CreateRotBomContentRequest
 import com.iarpi.erp.controller.request.UpdateRotBomContentRequest
 import com.iarpi.erp.controller.response.BaseResponse
-import com.iarpi.erp.service.MaterialTextService
 import com.iarpi.erp.service.RotBomContentService
 import org.springframework.web.bind.annotation.*
 

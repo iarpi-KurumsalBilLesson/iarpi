@@ -18,7 +18,10 @@ class OperationController(val operationService: OperationService) {
     }
 
     @PutMapping("/{id}")
-    fun updateOperation(@PathVariable id: Long, @RequestBody request: UpdateOperationRequest): BaseResponse<OperationDto> {
+    fun updateOperation(
+        @PathVariable id: Long,
+        @RequestBody request: UpdateOperationRequest
+    ): BaseResponse<OperationDto> {
         val data = operationService.updateOperation(id, request)
         return BaseResponse.success(data)
     }

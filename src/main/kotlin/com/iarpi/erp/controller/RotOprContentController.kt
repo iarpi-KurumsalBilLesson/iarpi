@@ -1,18 +1,14 @@
 package com.iarpi.erp.controller
 
-import com.iarpi.erp.controller.request.CreateRotHeadRequest
 import com.iarpi.erp.controller.request.CreateRotOprContentRequest
-import com.iarpi.erp.controller.request.UpdateRotHeadRequest
 import com.iarpi.erp.controller.request.UpdateRotOprContentRequest
 import com.iarpi.erp.controller.response.BaseResponse
-import com.iarpi.erp.service.RotHeadService
 import com.iarpi.erp.service.RotOprContentService
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/rotopr/content")
-data class RotOprContentController(val rotOprContentService: RotOprContentService)
-{
+data class RotOprContentController(val rotOprContentService: RotOprContentService) {
     @PostMapping
     fun createNewRotOprContent(@RequestBody request: CreateRotOprContentRequest): BaseResponse<*> {
         val data = rotOprContentService.createNewRotOprContent(request)

@@ -1,6 +1,7 @@
 package com.iarpi.erp.service.impl
 
-import com.iarpi.erp.controller.request.*
+import com.iarpi.erp.controller.request.CreateWorkCenterOprRequest
+import com.iarpi.erp.controller.request.UpdateWorkCenterOprRequest
 import com.iarpi.erp.repository.WorkCenterOprRepository
 import com.iarpi.erp.service.WorkCenterOprService
 import org.springframework.stereotype.Service

@@ -3,14 +3,12 @@ package com.iarpi.erp.controller
 import com.iarpi.erp.controller.request.CreateWorkCenterOprRequest
 import com.iarpi.erp.controller.request.UpdateWorkCenterOprRequest
 import com.iarpi.erp.controller.response.BaseResponse
-import com.iarpi.erp.service.WorkCenterHeadService
 import com.iarpi.erp.service.WorkCenterOprService
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/workcenter/opr")
-data class WorkCenterOprController(val workCenterOprService: WorkCenterOprService)
-{
+data class WorkCenterOprController(val workCenterOprService: WorkCenterOprService) {
     @PostMapping
     fun createNewWorkCenterOpr(@RequestBody request: CreateWorkCenterOprRequest): BaseResponse<*> {
         val data = workCenterOprService.createNewWorkCenterOpr(request)

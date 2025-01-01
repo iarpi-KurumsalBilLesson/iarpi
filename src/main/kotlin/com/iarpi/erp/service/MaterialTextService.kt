@@ -1,7 +1,7 @@
 package com.iarpi.erp.service
 
-import com.iarpi.erp.controller.request.UpdateMaterialTextRequest
 import com.iarpi.erp.controller.request.CreateMaterialTextRequest
+import com.iarpi.erp.controller.request.UpdateMaterialTextRequest
 
 interface MaterialTextService {
     fun createNewMaterialText(request: CreateMaterialTextRequest)

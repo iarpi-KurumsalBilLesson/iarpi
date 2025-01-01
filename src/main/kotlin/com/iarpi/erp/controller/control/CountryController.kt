@@ -1,15 +1,15 @@
 package com.iarpi.erp.controller.control
 
-import com.iarpi.erp.controller.control.request.CreateCountryRequest
-import com.iarpi.erp.controller.control.request.UpdateCountryRequest
 import com.iarpi.erp.controller.response.BaseResponse
 import com.iarpi.erp.service.control.CountryService
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/country")
-data class CountryController(val countryService: CountryService)
-{
+data class CountryController(val countryService: CountryService) {
 
 
     @GetMapping

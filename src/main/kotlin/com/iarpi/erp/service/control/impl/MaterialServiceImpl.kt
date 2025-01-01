@@ -23,7 +23,7 @@ class MaterialServiceImpl(
     override fun createMaterial(request: CreateMaterialRequest): MaterialDto {
         val company = companyRepository.findById(request.companyId)
             .orElseThrow { NotFoundException("request.companyId.toString()") }
-        
+
         val entity = request.convertToEntity(company)
         return materialRepository.save(entity).convertToDto()
     }
@@ -32,7 +32,7 @@ class MaterialServiceImpl(
     override fun updateMaterial(id: Long, request: UpdateMaterialRequest): MaterialDto {
         val entity = materialRepository.findById(id)
             .orElseThrow { NotFoundException("id") }
-        
+
         val updatedEntity = request.applyUpdatesTo(entity)
         return materialRepository.save(updatedEntity).convertToDto()
     }

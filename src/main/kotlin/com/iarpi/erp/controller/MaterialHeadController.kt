@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/material/head")
-class MaterialHeadController(val materialHeadService : MaterialHeadService) {
+class MaterialHeadController(val materialHeadService: MaterialHeadService) {
 
     @PostMapping
     fun createNewMaterialHead(@RequestBody request: CreateMaterialHeadRequest): BaseResponse<MaterialHeadDto> {
@@ -18,7 +18,10 @@ class MaterialHeadController(val materialHeadService : MaterialHeadService) {
     }
 
     @PutMapping("/{id}")
-    fun updateMaterialHead(@PathVariable id: Long, @RequestBody request: UpdateMaterialHeadRequest): BaseResponse<MaterialHeadDto> {
+    fun updateMaterialHead(
+        @PathVariable id: Long,
+        @RequestBody request: UpdateMaterialHeadRequest
+    ): BaseResponse<MaterialHeadDto> {
         val data = materialHeadService.updateMaterialHead(request)
         return BaseResponse.success(data)
     }

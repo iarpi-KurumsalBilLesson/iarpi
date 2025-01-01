@@ -3,8 +3,8 @@ package com.iarpi.erp.service.impl
 import com.iarpi.erp.controller.request.CreateCostCenterHeadRequest
 import com.iarpi.erp.controller.request.UpdateCostCenterHeadRequest
 import com.iarpi.erp.repository.CostCenterHeadRepository
-import org.springframework.stereotype.Service
 import com.iarpi.erp.service.CostCenterHeadService
+import org.springframework.stereotype.Service
 
 @Service
 class CostCenterHeadServiceImpl(val costCenterHeadRepository: CostCenterHeadRepository) : CostCenterHeadService {
