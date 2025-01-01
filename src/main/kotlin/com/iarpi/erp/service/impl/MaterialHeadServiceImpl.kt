@@ -2,31 +2,47 @@ package com.iarpi.erp.service.impl
 
 import com.iarpi.erp.controller.request.CreateMaterialHeadRequest
 import com.iarpi.erp.controller.request.UpdateMaterialHeadRequest
+import com.iarpi.erp.model.dto.MaterialHeadDto
+import com.iarpi.erp.model.entity.MaterialHeadEntity
+import com.iarpi.erp.model.exception.NotFoundException
 import com.iarpi.erp.repository.MaterialHeadRepository
 import com.iarpi.erp.service.MaterialHeadService
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
-class MaterialHeadServiceImpl(val materialHeadRepository: MaterialHeadRepository) : MaterialHeadService {
+class MaterialHeadServiceImpl(
+    private val materialHeadRepository: MaterialHeadRepository
+) : MaterialHeadService {
 
-    override fun createNewMaterialHead(request: CreateMaterialHeadRequest) {
-        TODO("Not yet implemented")
+    @Transactional
+    override fun createNewMaterialHead(request: CreateMaterialHeadRequest): MaterialHeadDto {
+        // TODO: Entity oluşturma ve dönüştürme işlemleri eklenecek
+        throw NotImplementedError("Bu metod henüz implemente edilmedi")
     }
 
-    override fun updateMaterialHead(request: UpdateMaterialHeadRequest) {
-        TODO("Not yet implemented")
+    @Transactional
+    override fun updateMaterialHead(request: UpdateMaterialHeadRequest): MaterialHeadDto {
+        // TODO: Güncelleme işlemleri eklenecek
+        throw NotImplementedError("Bu metod henüz implemente edilmedi")
     }
 
+    @Transactional
     override fun deleteMaterialHeadById(id: Long): String {
+        if (!materialHeadRepository.existsById(id)) {
+            throw NotFoundException("Material head not found with id: $id")
+        }
         materialHeadRepository.deleteById(id)
-
-        return "Record was deleted"
+        return "Material head deleted successfully"
     }
 
-    override fun getAll() {
-        materialHeadRepository.findAll()
+    override fun getAll(): List<MaterialHeadDto> {
+        // TODO: Entity'den DTO'ya dönüştürme işlemleri eklenecek
+        throw NotImplementedError("Bu metod henüz implemente edilmedi")
     }
 
-    override fun getById(id: Long) {
+    override fun getById(id: Long): MaterialHeadDto {
+        // TODO: Entity'den DTO'ya dönüştürme işlemleri eklenecek
+        throw NotImplementedError("Bu metod henüz implemente edilmedi")
     }
 }
