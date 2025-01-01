@@ -7,25 +7,6 @@ data class UnitDto(
     val unitCode: String,
     val unitText: String,
     val isMainUnit: Boolean,
-    val mainUnitCode: String
+    val mainUnitCode: String,
+    val companyId: Long?
 )
-
-fun UnitDto.convertToEntity(): UnitEntity {
-    return UnitEntity(
-        null,
-        this.unitCode,
-        this.unitText,
-        this.isMainUnit,
-        this.mainUnitCode
-    )
-}
-
-fun UnitDto.convertToEntity(unitCode: String): UnitEntity {
-    return UnitEntity(
-        null,
-        unitCode,
-        this.unitText,
-        this.isMainUnit,
-        this.mainUnitCode
-    )
-}

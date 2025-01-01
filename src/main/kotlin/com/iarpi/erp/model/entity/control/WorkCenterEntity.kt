@@ -1,6 +1,9 @@
 package com.iarpi.erp.model.entity.control
 
+import com.iarpi.erp.model.dto.control.MaterialDto
+import com.iarpi.erp.model.dto.control.WorkCenterDto
 import jakarta.persistence.*
+import org.hibernate.jdbc.Work
 
 @Entity
 @Table(name = "BSMGRIRPWCM001")
@@ -19,5 +22,19 @@ data class WorkCenterEntity(
 
     @Column(name = "IS_PASSIVE")
     var isPassive: Boolean,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "COM_ID", nullable = false)
+    val company: CompanyEntity
 )
+
+fun WorkCenterEntity.convertToDto(): WorkCenterDto {
+    return WorkCenterDto(
+        id = this.id,
+        docType = this.docType,
+        docText = this.docText,
+        isPassive = this.isPassive,
+        companyId = this.company.id
+    )
+}
 

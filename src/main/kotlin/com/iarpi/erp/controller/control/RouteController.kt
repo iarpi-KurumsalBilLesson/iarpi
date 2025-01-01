@@ -9,39 +9,35 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/route")
-data class RouteController(val routeService: RouteService)
-{
-    @PostMapping
-    fun createNewRoute(@RequestBody request: CreateRouteRequest): BaseResponse<*> {
-        val data = routeService.createRoute(request)
+class RouteController(val routeService: RouteService) {
 
+    @PostMapping
+    fun createNewRoute(@RequestBody request: CreateRouteRequest): BaseResponse<RouteDto> {
+        val data = routeService.createRoute(request)
         return BaseResponse.success(data)
     }
 
     @PutMapping("/{id}")
-    fun updateRoute(@PathVariable id: Long, @RequestBody request: UpdateRouteRequest): BaseResponse<*> {
-        val data = routeService.updateRoute(request)
+    fun updateRoute(@PathVariable id: Long, @RequestBody request: UpdateRouteRequest): BaseResponse<RouteDto> {
+        val data = routeService.updateRoute(id, request)
         return BaseResponse.success(data)
-
     }
 
     @DeleteMapping("/{id}")
-    fun deleteRouteById(@PathVariable id: Long): BaseResponse<*> {
+    fun deleteRouteById(@PathVariable id: Long): BaseResponse<String> {
         val data = routeService.deleteRouteById(id)
-
         return BaseResponse.success(data)
     }
 
     @GetMapping
-    fun getAllRoute(): BaseResponse<*> {
+    fun getAllRoute(): BaseResponse<List<RouteDto>> {
         val data = routeService.getAll()
         return BaseResponse.success(data)
     }
 
     @GetMapping("/{id}")
-    fun getRouteById(@PathVariable id: Long): BaseResponse<*> {
+    fun getRouteById(@PathVariable id: Long): BaseResponse<RouteDto> {
         val data = routeService.getById(id)
-
         return BaseResponse.success(data)
     }
 }

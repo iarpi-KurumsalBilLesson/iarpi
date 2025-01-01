@@ -1,5 +1,6 @@
 package com.iarpi.erp.model.entity.control
 
+import com.iarpi.erp.model.dto.control.UnitDto
 import jakarta.persistence.*
 
 @Entity
@@ -22,4 +23,17 @@ data class UnitEntity(
 
     @Column(name = "MAIN_UNIT_CODE")
     var mainUnitCode: String,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "COM_ID", nullable = false)
+    val company: CompanyEntity
+)
+
+fun UnitEntity.convertToDto() = UnitDto(
+    id = this.id,
+    unitCode = this.unitCode,
+    unitText = this.unitText,
+    isMainUnit = this.isMainUnit,
+    mainUnitCode = this.mainUnitCode,
+    companyId = this.company.id
 )

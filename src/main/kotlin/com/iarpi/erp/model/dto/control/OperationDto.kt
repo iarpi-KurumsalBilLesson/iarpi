@@ -9,21 +9,3 @@ data class OperationDto(
     val isPassive: Boolean,
     val companyId: Long?
 )
-
-fun OperationDto.convertToEntity(): OperationEntity {
-    return OperationEntity(
-        null,
-        this.docType,
-        this.docText,
-        this.isPassive,
-    )
-}
-
-fun OperationDto.convertToEntity(OperationCode:String): OperationEntity {
-    return OperationEntity(
-        null,
-        OperationCode,
-        this.docText,
-        this.isPassive,
-    )
-}
