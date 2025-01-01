@@ -2,12 +2,13 @@ package com.iarpi.erp.service
 
 import com.iarpi.erp.controller.request.CreateMaterialHeadRequest
 import com.iarpi.erp.controller.request.UpdateMaterialHeadRequest
+import com.iarpi.erp.model.dto.MaterialHeadDto
 
 interface MaterialHeadService {
 
-    fun createNewMaterialHead(request: CreateMaterialHeadRequest)
-    fun updateMaterialHead(request: UpdateMaterialHeadRequest)
+    fun createNewMaterialHead(request: CreateMaterialHeadRequest): MaterialHeadDto
+    fun updateMaterialHead(request: UpdateMaterialHeadRequest): MaterialHeadDto
     fun deleteMaterialHeadById(id: Long): String
-    fun getAll()
-    fun getById(id: Long)
+    fun getAll(): List<MaterialHeadDto>
+    fun getById(id: Long): MaterialHeadDto
 }

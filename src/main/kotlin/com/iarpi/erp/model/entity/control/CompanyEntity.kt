@@ -1,5 +1,6 @@
 package com.iarpi.erp.model.entity.control
 
+import com.iarpi.erp.model.dto.control.CompanyDto
 import jakarta.persistence.*
 
 @Entity
@@ -21,3 +22,11 @@ data class CompanyEntity(
     @JoinColumn(referencedColumnName = "ID")
     var addressEntity: AddressEntity?
 )
+
+fun CompanyEntity.convertToDto(): CompanyDto {
+    return CompanyDto(
+        id = this.id,
+        comCode = this.comCode,
+        comText = this.comText
+    )
+}
