@@ -7,12 +7,13 @@ import java.time.LocalDate
 @Entity
 @Table(name = "BSMGRIRPMATHEAD")
 data class MaterialHeadEntity(
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "material_head_sequence")
     @SequenceGenerator(name = "material_head_sequence", sequenceName = "bsmgrirpmathead_id_seq", allocationSize = 1)
     val id : Long,
 
-    @Column(name = "DOC_NUM", nullable = false, unique = true)
+    @Column(name = "MAT_DOC_NUM", nullable = false, unique = true)
     val docNum: String,
 
     @Column(name = "MAT_DOC_FROM", nullable = false)
@@ -22,7 +23,7 @@ data class MaterialHeadEntity(
     val matDocUntil: LocalDate,
 
     @Column(name = "SUPPLY_TYPE", nullable = false)
-    val supplyType: Boolean,
+    val supplyType: Int,
 
     @Column(name = "NET_WEIGHT")
     val netWeight: BigDecimal?,

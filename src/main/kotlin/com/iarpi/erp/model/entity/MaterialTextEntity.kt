@@ -5,6 +5,7 @@ import jakarta.persistence.*
 @Entity
 @Table(name = "BSMGRIRPMATTEXT")
 data class MaterialTextEntity(
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "material_text_sequence")
     @SequenceGenerator(name = "material_text_sequence", sequenceName = "bsmgrirpmattext_id_seq", allocationSize = 1)

@@ -9,7 +9,8 @@ import lombok.Setter
 data class LanguageEntity(
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "costCenter_sequence")
+    @SequenceGenerator(name = "costCenter_sequence", sequenceName = "bsmgrirpgen002_id_seq", allocationSize = 1)
     val id: Long?,
 
     @Column(name = "LAN_CODE", nullable = false)
@@ -17,7 +18,5 @@ data class LanguageEntity(
 
     @Column(name = "LAN_TEXT", nullable = false)
     var lanText: String
-) {
-    constructor(lanCode: String, lanText: String) : this(null, lanCode, lanText)
-}
+)
 

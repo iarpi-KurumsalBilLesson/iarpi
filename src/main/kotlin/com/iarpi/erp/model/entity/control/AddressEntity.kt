@@ -6,8 +6,6 @@ import jakarta.persistence.*
 @Table(name = "BSMGRIRPGEN0011")
 data class AddressEntity(
 
-    //todo: burada adresi de eklememiz lazım, burada gecici olarak adresi kaldirdik
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_sequence")
     @SequenceGenerator(name = "address_sequence", sequenceName = "bsmgrirpgen0011_id_seq", allocationSize = 1)

@@ -3,12 +3,12 @@ package com.iarpi.erp.model.entity.control
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "BSMGRIRPROT002")
+@Table(name = "BSMGRIRPWCM001")
 data class WorkCenterEntity(
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "business_sequence")
-    @SequenceGenerator(name = "business_sequence", sequenceName = "bsmgrirprot002_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "workCenter_sequence")
+    @SequenceGenerator(name = "workCenter_sequence", sequenceName = "bsmgrirpwcm001_id_seq", allocationSize = 1)
     var id: Long?,
 
     @Column(name = "DOC_TYPE")

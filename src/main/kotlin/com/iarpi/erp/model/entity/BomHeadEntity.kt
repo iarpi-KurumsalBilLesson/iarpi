@@ -2,33 +2,26 @@ package com.iarpi.erp.model.entity
 
 import jakarta.persistence.*
 import java.math.BigDecimal
+import java.time.LocalDate
 import java.util.*
 
 @Entity
-@Table
+@Table(name = "BSMGRIRPBOMHEAD")
 data class BomHeadEntity(
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bom_head_sequence")
-    @SequenceGenerator(name = "bom_head_sequence", sequenceName = "bom_head_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "bom_head_sequence", sequenceName = "bsmgrirpbomhead_id_seq", allocationSize = 1)
     val id : Long,
 
-    @Column(name = "COM_ID", nullable = false)
-    val companyId: Int,
-
-    @Column(name = "MATERIAL_DOC_TYPE", nullable = false)
-    val materialDocType: Int,
-
-    @Column(name = "BOM_DOC_TYPE", nullable = false)
-    val bomDocType: Int,
-
-    @Column(name = "DOC_NUM", nullable = false, unique = true)
+    @Column(name = "BOM_DOC_NUM", nullable = false, unique = true)
     val docNum: String,
 
     @Column(name = "BOM_DOC_FROM", nullable = false)
-    val bomDocFrom: Date,
+    val bomDocFrom: LocalDate,
 
     @Column(name = "BOM_DOC_UNTIL", nullable = false)
-    val bomDocUntil: Date,
+    val bomDocUntil: LocalDate,
 
     @Column(name = "QUANTITY", nullable = false)
     val quantity: BigDecimal,

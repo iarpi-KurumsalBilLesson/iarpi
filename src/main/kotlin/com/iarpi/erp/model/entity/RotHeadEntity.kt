@@ -5,22 +5,13 @@ import java.math.BigDecimal
 import java.util.*
 
 @Entity
-@Table
+@Table(name = "BSMGRIRPROTHEAD")
 data class RotHeadEntity(
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rot_head_sequence")
-    @SequenceGenerator(name = "rot_head_sequence", sequenceName = "rot_head_id_seq", allocationSize = 1)
-    val id : Long,
-
-
-    @Column(name = "COM_ID", nullable = false)
-    val companyId: Int,
-
-    @Column(name = "BOM_DOC_TYPE", nullable = false)
-    val bomDocType: Int,
-
-    @Column(name = "MATERIAL_DOC_TYPE", nullable = false)
-    val materialDocType: Int,
+    @SequenceGenerator(name = "rot_head_sequence", sequenceName = "bsmgrirprothead_id_seq", allocationSize = 1)
+    val id: Long,
 
     @Column(name = "ROT_DOC_FROM", nullable = false)
     val rotDocFrom: Date,

@@ -5,20 +5,15 @@ import java.math.BigDecimal
 import java.util.*
 
 @Entity
-@Table
+@Table(name = "BSMGRIRPWCMHEAD")
 data class WorkCenterHeadEntity(
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "work_center_head_sequence")
-    @SequenceGenerator(name = "work_center_head_sequence", sequenceName = "work_center_head_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "work_center_head_sequence", sequenceName = "bsmgrirpwcmhead_id_seq", allocationSize = 1)
     val id : Long,
 
-    @Column(name = "COM_ID", nullable = false)
-    val companyId: Int,
-
-    @Column(name = "WORK_DOC_TYPE", nullable = false)
-    val workCenterDocType: Int,
-
-    @Column(name = "DOC_NUM", nullable = false, unique = true)
+    @Column(name = "WCM_DOC_NUM", nullable = false, unique = true)
     val docNum: String,
 
     @Column(name = "WCM_DOC_FROM", nullable = false)

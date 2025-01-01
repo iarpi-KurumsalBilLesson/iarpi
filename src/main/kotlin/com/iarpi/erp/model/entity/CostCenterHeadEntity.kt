@@ -6,12 +6,13 @@ import java.time.LocalDate
 @Entity
 @Table(name = "BSMGRIRPCCMHEAD")
 data class CostCenterHeadEntity(
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cost_center_head_sequence")
     @SequenceGenerator(name = "cost_center_head_sequence", sequenceName = "bsmgrirpccmhead_id_seq", allocationSize = 1)
     val id : Long,
 
-    @Column(name = "DOC_NUM", nullable = false, unique = true)
+    @Column(name = "CCM_DOC_NUM", nullable = false, unique = true)
     val docNum: String,
 
     @Column(name = "CCM_DOC_FROM", nullable = false)
