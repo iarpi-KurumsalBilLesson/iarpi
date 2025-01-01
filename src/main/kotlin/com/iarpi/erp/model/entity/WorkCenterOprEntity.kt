@@ -1,5 +1,6 @@
 package com.iarpi.erp.model.entity
 
+import com.iarpi.erp.model.entity.control.CompanyEntity
 import jakarta.persistence.*
 
 @Entity
@@ -13,4 +14,12 @@ data class WorkCenterOprEntity(
 
     @Column(name = "OPR_CODE", nullable = false, unique = true, length = 4)
     val oprCode: String,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "COM_ID", nullable = false)
+    val company: CompanyEntity,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "WCM_HEAD_ID", nullable = false, referencedColumnName = "id")
+    val wcmHead: WorkCenterHeadEntity,
 )

@@ -38,7 +38,7 @@ data class RotBomContentController(val rotBomContentService: RotBomContentServic
         return BaseResponse.success(data)
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     fun getMaterialTextById(@PathVariable id: Long): BaseResponse<*> {
         val data = rotBomContentService.getById(id)
 

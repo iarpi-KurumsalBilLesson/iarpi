@@ -37,7 +37,7 @@ data class WorkCenterHeadController(val workCenterHeadService: WorkCenterHeadSer
         return BaseResponse.success(data)
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     fun getWorkCenterHeadById(@PathVariable id: Long): BaseResponse<*> {
         val data = workCenterHeadService.getById(id)
 

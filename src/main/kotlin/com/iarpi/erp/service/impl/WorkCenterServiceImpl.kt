@@ -1,13 +1,13 @@
 package com.iarpi.erp.service.impl
 
-import com.iarpi.erp.controller.request.CreateWorkCenterRequest
-import com.iarpi.erp.controller.request.UpdateWorkCenterRequest
-import com.iarpi.erp.repository.WorkCenterRepository
+import com.iarpi.erp.controller.control.request.CreateWorkCenterRequest
+import com.iarpi.erp.controller.control.request.UpdateWorkCenterRequest
+import com.iarpi.erp.repository.control.WorkCenterRepository
 import org.springframework.stereotype.Service
-import com.iarpi.erp.service.WorkCenterService
+import com.iarpi.erp.service.control.WorkCenterService
 
 @Service
-data class WorkCenterServiceImpl(val workCenterRepository: WorkCenterRepository) : WorkCenterService{
+data class WorkCenterServiceImpl(val workCenterRepository: WorkCenterRepository) : WorkCenterService {
 
     override fun createWorkCenter(request: CreateWorkCenterRequest) {
         TODO("Not yet implemented")

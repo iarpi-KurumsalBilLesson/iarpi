@@ -37,7 +37,7 @@ data class WorkCenterTextController(val workCenterTextService: WorkCenterTextSer
         return BaseResponse.success(data)
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     fun getWorkCenterTextById(@PathVariable id: Long): BaseResponse<*> {
         val data = workCenterTextService.getById(id)
 

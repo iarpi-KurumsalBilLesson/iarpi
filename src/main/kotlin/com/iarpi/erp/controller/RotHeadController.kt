@@ -40,7 +40,7 @@ data class RotHeadController(val rotHeadService: RotHeadService)
         return BaseResponse.success(data)
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     fun getRotHeadById(@PathVariable id: Long): BaseResponse<*> {
         val data = rotHeadService.getById(id)
 

@@ -38,7 +38,7 @@ data class WorkCenterOprController(val workCenterOprService: WorkCenterOprServic
         return BaseResponse.success(data)
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     fun getWorkCenterOprById(@PathVariable id: Long): BaseResponse<*> {
         val data = workCenterOprService.getById(id)
 

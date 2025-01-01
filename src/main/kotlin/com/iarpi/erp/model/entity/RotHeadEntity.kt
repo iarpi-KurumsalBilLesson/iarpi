@@ -1,8 +1,10 @@
 package com.iarpi.erp.model.entity
 
+import com.iarpi.erp.model.entity.control.CompanyEntity
+import com.iarpi.erp.model.entity.control.RouteEntity
 import jakarta.persistence.*
 import java.math.BigDecimal
-import java.util.*
+import java.time.LocalDate
 
 @Entity
 @Table(name = "BSMGRIRPROTHEAD")
@@ -14,12 +16,12 @@ data class RotHeadEntity(
     val id: Long,
 
     @Column(name = "ROT_DOC_FROM", nullable = false)
-    val rotDocFrom: Date,
+    val rotDocFrom: LocalDate = LocalDate.now(),
 
     @Column(name = "ROT_DOC_UNTIL", nullable = false)
-    val rotDocUntil: Date,
+    val rotDocUntil: LocalDate = LocalDate.now(),
 
-    @Column(name = "QUANTITY", nullable = false)
+    @Column(name = "QUANTITY", nullable = false, precision = 5, scale = 2)
     val quantity: BigDecimal,
 
     @Column(name = "IS_DELETED")
@@ -28,6 +30,19 @@ data class RotHeadEntity(
     @Column(name = "IS_PASSIVE")
     val isPassive: Boolean?,
 
-    @Column(name = "DRAW_NUM")
-    val drawNum: String?
+    @Column(name = "DRAW_NUM", length = 25)
+    val drawNum: String?,
+
+    // İlişkiler
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "COM_ID", nullable = false)
+    val company: CompanyEntity,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "BOM_HEAD_ID", nullable = false)
+    val bomHead: BomHeadEntity,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MAT_HEAD_ID", nullable = false)
+    val materialHead: MaterialHeadEntity
 )

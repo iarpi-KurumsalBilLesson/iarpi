@@ -37,7 +37,7 @@ data class CostCenterHeadController(val costCenterHeadService: CostCenterHeadSer
         return BaseResponse.success(data)
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     fun getCostCenterHeadById(@PathVariable id: Long): BaseResponse<*> {
         val data = costCenterHeadService.getById(id)
 

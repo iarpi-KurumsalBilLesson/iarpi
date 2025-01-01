@@ -1,5 +1,6 @@
 package com.iarpi.erp.model.entity
 
+import com.iarpi.erp.model.entity.control.CompanyEntity
 import jakarta.persistence.*
 import java.math.BigDecimal
 
@@ -29,5 +30,29 @@ data class RotOprContentEntity(
     val machineTime: BigDecimal?,
 
     @Column(name = "LABOUR_TIME")
-    val labourTime: BigDecimal?
+    val labourTime: BigDecimal?,
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "COM_ID", nullable = false)
+    val rotBomContentEntity: MutableList<RotBomContentEntity> = mutableListOf(),
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "COM_ID", nullable = false)
+    val company: CompanyEntity,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ROT_HEAD_ID", nullable = false, referencedColumnName = "id")
+    val rotHead: RotHeadEntity,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "BOM_HEAD_ID", nullable = false, referencedColumnName = "id")
+    val bomHead: BomHeadEntity,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CCM_HEAD_ID", nullable = false, referencedColumnName = "id")
+    val ccmHead: CostCenterHeadEntity,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "WCM_HEAD_ID", nullable = false, referencedColumnName = "id")
+    val wcmHead: WorkCenterHeadEntity,
 )

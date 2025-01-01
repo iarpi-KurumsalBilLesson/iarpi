@@ -40,7 +40,7 @@ data class RotOprContentController(val rotOprContentService: RotOprContentServic
         return BaseResponse.success(data)
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     fun getRotOprContentById(@PathVariable id: Long): BaseResponse<*> {
         val data = rotOprContentService.getById(id)
 

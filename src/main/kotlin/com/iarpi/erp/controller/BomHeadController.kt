@@ -37,7 +37,7 @@ data class BomHeadController(val bomHeadService : BomHeadService)
         return BaseResponse.success(data)
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     fun getBomHeadById(@PathVariable id: Long): BaseResponse<*> {
         val data = bomHeadService.getById(id)
 

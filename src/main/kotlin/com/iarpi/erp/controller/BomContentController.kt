@@ -38,7 +38,7 @@ class BomContentController(val bomContentService : BomContentService) {
         return BaseResponse.success(data)
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     fun getBomContentById(@PathVariable id: Long): BaseResponse<*> {
         val data = bomContentService.getById(id)
 

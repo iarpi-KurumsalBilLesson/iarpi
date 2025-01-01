@@ -1,5 +1,7 @@
 package com.iarpi.erp.model.entity
 
+import com.iarpi.erp.model.entity.control.CompanyEntity
+import com.iarpi.erp.model.entity.control.LanguageEntity
 import jakarta.persistence.*
 
 @Entity
@@ -17,5 +19,16 @@ data class WorkCenterTextEntity(
     @Column(name = "WCML_TEXT", nullable = false, length = 250)
     val wcmlText: String,
 
+    // İlişkiler
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "COM_ID", nullable = false)
+    val company: CompanyEntity,
 
-    )
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "LAN_ID", nullable = false)
+    val language: LanguageEntity,
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "WCM_HEAD_ID", nullable = false)
+    val workCenterHead: WorkCenterHeadEntity
+)

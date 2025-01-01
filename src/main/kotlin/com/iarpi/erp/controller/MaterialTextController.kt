@@ -37,7 +37,7 @@ class MaterialTextController(val materialTextService : MaterialTextService) {
         return BaseResponse.success(data)
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     fun getMaterialTextById(@PathVariable id: Long): BaseResponse<*> {
         val data = materialTextService.getById(id)
 

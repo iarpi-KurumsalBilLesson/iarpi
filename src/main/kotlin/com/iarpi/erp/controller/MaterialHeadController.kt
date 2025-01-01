@@ -37,7 +37,7 @@ class MaterialHeadController(val materialHeadService : MaterialHeadService) {
         return BaseResponse.success(data)
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     fun getMaterialHeadById(@PathVariable id: Long): BaseResponse<*> {
         val data = materialHeadService.getById(id)
 
