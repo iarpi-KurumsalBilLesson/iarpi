@@ -10,26 +10,6 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/city")
 data class CityController(val cityService : CityService)
 {
-    @PostMapping
-    fun createNewCity(@RequestBody request: CreateCityRequest): BaseResponse<*> {
-        val data = cityService.createCity(request)
-
-        return BaseResponse.success(data)
-    }
-
-    @PutMapping("/{id}")
-    fun updateCity(@PathVariable id: Long, @RequestBody request: UpdateCityRequest): BaseResponse<*> {
-        val data = cityService.updateCity(request)
-        return BaseResponse.success(data)
-
-    }
-
-    @DeleteMapping("/{id}")
-    fun deleteCityById(@PathVariable id: Long): BaseResponse<*> {
-        val data = cityService.deleteCityById(id)
-
-        return BaseResponse.success(data)
-    }
 
     @GetMapping
     fun getAllCity(): BaseResponse<*> {

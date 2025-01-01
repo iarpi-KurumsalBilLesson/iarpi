@@ -10,26 +10,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/country")
 data class CountryController(val countryService: CountryService)
 {
-    @PostMapping
-    fun createNewCountry(@RequestBody request: CreateCountryRequest): BaseResponse<*> {
-        val data = countryService.createCountry(request)
 
-        return BaseResponse.success(data)
-    }
-
-    @PutMapping("/{id}")
-    fun updateCountry(@PathVariable id: Long, @RequestBody request: UpdateCountryRequest): BaseResponse<*> {
-        val data = countryService.updateCountry(request)
-        return BaseResponse.success(data)
-
-    }
-
-    @DeleteMapping("/{id}")
-    fun deleteCountryById(@PathVariable id: Long): BaseResponse<*> {
-        val data = countryService.deleteCountryById(id)
-
-        return BaseResponse.success(data)
-    }
 
     @GetMapping
     fun getAllCountry(): BaseResponse<*> {

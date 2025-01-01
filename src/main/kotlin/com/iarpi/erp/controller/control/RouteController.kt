@@ -3,6 +3,7 @@ package com.iarpi.erp.controller.control
 import com.iarpi.erp.controller.control.request.CreateRouteRequest
 import com.iarpi.erp.controller.control.request.UpdateRouteRequest
 import com.iarpi.erp.controller.response.BaseResponse
+import com.iarpi.erp.model.dto.control.RouteDto
 import com.iarpi.erp.service.control.RouteService
 import org.springframework.web.bind.annotation.*
 

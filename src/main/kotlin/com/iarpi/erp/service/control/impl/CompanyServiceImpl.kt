@@ -30,18 +30,19 @@ class CompanyServiceImpl(
     @Transactional
     override fun updateCompany(id: Long, request: UpdateCompanyRequest): CompanyDto {
         val company = companyRepository.findById(id)
-            .orElseThrow { NotFoundException("Company not found with id: $id") }
-        
+            .orElseThrow { NotFoundException(id.toString()) }
+
         company.comText = request.comText
-        
+
         return companyRepository.save(company).convertToDto()
     }
 
     @Transactional
     override fun deleteCompanyById(id: Long): String {
         if (!companyRepository.existsById(id)) {
-            throw NotFoundException("Company not found with id: $id")
+            throw NotFoundException(id.toString())
         }
+
         companyRepository.deleteById(id)
         return "Company deleted successfully"
     }
@@ -52,7 +53,7 @@ class CompanyServiceImpl(
 
     override fun getById(id: Long): CompanyDto {
         return companyRepository.findById(id)
-            .orElseThrow { NotFoundException("Company not found with id: $id") }
+            .orElseThrow { NotFoundException(id.toString()) }
             .convertToDto()
     }
 }

@@ -1,12 +1,11 @@
 package com.iarpi.erp.model.entity.control
 
+import com.iarpi.erp.model.dto.control.CostCenterDto
 import jakarta.persistence.*
-
 
 @Entity
 @Table(name = "BSMGRIRPCCM001")
 data class CostCenterEntity(
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "costCenter_sequence")
     @SequenceGenerator(name = "costCenter_sequence", sequenceName = "bsmgrirpccm001_id_seq", allocationSize = 1)
@@ -21,4 +20,13 @@ data class CostCenterEntity(
     @Column(name = "IS_PASSIVE")
     var isPassive: Boolean,
 )
+
+fun CostCenterEntity.convertToDto(): CostCenterDto {
+    return CostCenterDto(
+        id = this.id,
+        docType = this.docType,
+        docText = this.docText,
+        isPassive = this.isPassive
+    )
+}
 
