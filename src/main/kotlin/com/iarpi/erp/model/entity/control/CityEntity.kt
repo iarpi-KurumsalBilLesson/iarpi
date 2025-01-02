@@ -1,5 +1,6 @@
 package com.iarpi.erp.model.entity.control
 
+import com.iarpi.erp.model.dto.control.CityDto
 import jakarta.persistence.*
 
 @Entity
@@ -19,4 +20,11 @@ data class CityEntity(
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.REMOVE])
     var country: CountryEntity?
+)
+
+fun CityEntity.convertToDto() = CityDto(
+    id = this.id,
+    countryCode = this.country?.countryCode,
+    cityCode = this.cityCode,
+    cityText = this.cityText
 )

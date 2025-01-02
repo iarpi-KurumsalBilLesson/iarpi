@@ -1,33 +1,25 @@
 package com.iarpi.erp.service.control.impl
 
-import com.iarpi.erp.controller.control.request.CreateLanguageRequest
-import com.iarpi.erp.controller.control.request.UpdateLanguageRequest
+import com.iarpi.erp.model.dto.control.LanguageDto
+import com.iarpi.erp.model.entity.control.convertToDto
+import com.iarpi.erp.model.exception.NotFoundException
 import com.iarpi.erp.repository.control.LanguageRepository
 import com.iarpi.erp.service.control.LanguageService
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
-data class LanguageServiceImpl(val languageRepository: LanguageRepository) : LanguageService {
+class LanguageServiceImpl(
+    private val languageRepository: LanguageRepository
+) : LanguageService {
 
-
-    override fun createLanguage(request: CreateLanguageRequest) {
-        TODO("Not yet implemented")
+    override fun getAll(): List<LanguageDto> {
+        return languageRepository.findAll().map { it.convertToDto() }
     }
 
-    override fun getAll() {
-        TODO("Not yet implemented")
+    override fun getById(id: Long): LanguageDto {
+        return languageRepository.findById(id)
+            .orElseThrow { NotFoundException("Language not found with id: $id") }
+            .convertToDto()
     }
-
-    override fun getById(id: Long) {
-        TODO("Not yet implemented")
-    }
-
-    override fun updateLanguage(request: UpdateLanguageRequest) {
-        TODO("Not yet implemented")
-    }
-
-    override fun deleteLanguageById(id: Long): String {
-        TODO("Not yet implemented")
-    }
-
 }

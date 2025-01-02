@@ -8,7 +8,7 @@ import com.iarpi.erp.service.control.BomService
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/bom")
+@RequestMapping("/boms")
 class BomController(val bomService: BomService) {
 
     @PostMapping
@@ -36,6 +36,12 @@ class BomController(val bomService: BomService) {
     @GetMapping
     fun getAllBom(): BaseResponse<List<BomDto>> {
         val data = bomService.getAll()
+        return BaseResponse.success(data)
+    }
+
+    @GetMapping("/com/{id}")
+    fun getAllBom(@PathVariable id : Long): BaseResponse<List<BomDto>> {
+        val data = bomService.getAllByCompanyId(id)
         return BaseResponse.success(data)
     }
 

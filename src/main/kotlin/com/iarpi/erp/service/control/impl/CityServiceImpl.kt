@@ -1,33 +1,24 @@
 package com.iarpi.erp.service.control.impl
 
-import com.iarpi.erp.controller.control.request.CreateCityRequest
-import com.iarpi.erp.controller.control.request.UpdateCityRequest
+import com.iarpi.erp.model.dto.control.CityDto
+import com.iarpi.erp.model.entity.control.convertToDto
+import com.iarpi.erp.model.exception.NotFoundException
 import com.iarpi.erp.repository.control.CityRepository
 import com.iarpi.erp.service.control.CityService
 import org.springframework.stereotype.Service
 
 @Service
-data class CityServiceImpl(val cityRepository: CityRepository) : CityService {
+class CityServiceImpl(
+    private val cityRepository: CityRepository
+) : CityService {
 
-    override fun createCity(request: CreateCityRequest) {
-        TODO("Not yet implemented")
+    override fun getAll(): List<CityDto> {
+        return cityRepository.findAll().map { it.convertToDto() }
     }
 
-    override fun getAll() {
-        TODO("Not yet implemented")
+    override fun getById(id: Long): CityDto {
+        return cityRepository.findById(id)
+            .orElseThrow { NotFoundException(id.toString()) }
+            .convertToDto()
     }
-
-    override fun getById(id: Long) {
-        TODO("Not yet implemented")
-    }
-
-    override fun updateCity(request: UpdateCityRequest) {
-        TODO("Not yet implemented")
-    }
-
-    override fun deleteCityById(id: Long): String {
-        TODO("Not yet implemented")
-    }
-
-
 }

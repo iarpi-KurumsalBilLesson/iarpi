@@ -8,7 +8,7 @@ import com.iarpi.erp.service.control.OperationService
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/operation")
+    @RequestMapping("/operations")
 class OperationController(val operationService: OperationService) {
 
     @PostMapping

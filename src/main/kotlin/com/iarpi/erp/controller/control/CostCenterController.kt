@@ -8,7 +8,7 @@ import com.iarpi.erp.service.control.CostCenterService
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/costcenter")
+@RequestMapping("/cost-centers")
 class CostCenterController(val costCenterService: CostCenterService) {
 
     @PostMapping

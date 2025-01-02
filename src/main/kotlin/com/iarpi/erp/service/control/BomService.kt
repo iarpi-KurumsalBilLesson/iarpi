@@ -11,4 +11,5 @@ interface BomService {
     fun deleteBomById(id: Long): String
     fun getAll(): List<BomDto>
     fun getById(id: Long): BomDto
+    fun getAllByCompanyId(id: Long): List<BomDto>
 }

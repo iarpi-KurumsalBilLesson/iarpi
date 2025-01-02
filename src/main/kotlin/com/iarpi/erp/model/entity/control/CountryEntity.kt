@@ -1,5 +1,6 @@
 package com.iarpi.erp.model.entity.control
 
+import com.iarpi.erp.model.dto.control.CountryDto
 import jakarta.persistence.*
 
 @Entity
@@ -19,6 +20,12 @@ data class CountryEntity(
 
     @OneToMany(mappedBy = "country", targetEntity = CityEntity::class, fetch = FetchType.EAGER)
     var city: List<CityEntity> = mutableListOf()
+)
+
+fun CountryEntity.convertToDto() = CountryDto(
+    id = this.id,
+    countryCode = this.countryCode,
+    countryText = this.countryText
 )
 
 

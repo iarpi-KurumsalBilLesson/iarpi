@@ -1,10 +1,15 @@
 package com.iarpi.erp.controller.request
 
+import com.iarpi.erp.model.entity.control.CompanyEntity
 import com.iarpi.erp.model.entity.control.CostCenterEntity
 import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
 
 data class CreateCostCenterRequest(
+    @field:NotNull(message = "Company ID must not be null")
+    val companyId: Long,
+
     @field:NotBlank(message = "Doc Type must not be empty")
     @field:Size(max = 4, message = "Doc Type cannot be longer than 25 characters")
     val docType: String,
@@ -16,11 +21,12 @@ data class CreateCostCenterRequest(
     val isPassive: Boolean = false
 )
 
-fun CreateCostCenterRequest.convertToEntity(): CostCenterEntity {
+fun CreateCostCenterRequest.convertToEntity(company: CompanyEntity): CostCenterEntity {
     return CostCenterEntity(
         id = null,
         docType = this.docType,
         docText = this.docText,
-        isPassive = this.isPassive
+        isPassive = this.isPassive,
+        company = company
     )
 }

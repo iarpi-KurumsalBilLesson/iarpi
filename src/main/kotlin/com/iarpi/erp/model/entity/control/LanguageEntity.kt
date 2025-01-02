@@ -1,5 +1,6 @@
 package com.iarpi.erp.model.entity.control
 
+import com.iarpi.erp.model.dto.control.LanguageDto
 import jakarta.persistence.*
 import lombok.Setter
 
@@ -17,6 +18,16 @@ data class LanguageEntity(
     var lanCode: String,
 
     @Column(name = "LAN_TEXT", nullable = false)
-    var lanText: String
+    var lanText: String,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "COM_CODE_ID", nullable = false)
+    val company: CompanyEntity
+)
+
+fun LanguageEntity.convertToDto() = LanguageDto(
+    id = this.id,
+    lanCode = this.lanCode,
+    lanText = this.lanText
 )
 

@@ -1,18 +1,21 @@
 package com.iarpi.erp.controller.control.request
 
 import com.iarpi.erp.model.entity.control.BomEntity
+import com.iarpi.erp.model.entity.control.CompanyEntity
 
 data class CreateNewBomRequest(
+    var companyId: Long,
     var docType: String,
-    var docTypeText: String,
+    var docText: String,
     var isPassive: Boolean,
 )
 
-fun CreateNewBomRequest.convertToEntity(): BomEntity {
+fun CreateNewBomRequest.convertToEntity(company: CompanyEntity): BomEntity {
     return BomEntity(
         null,
         this.docType,
-        this.docTypeText,
+        this.docText,
         this.isPassive,
+        company = company
     )
 }

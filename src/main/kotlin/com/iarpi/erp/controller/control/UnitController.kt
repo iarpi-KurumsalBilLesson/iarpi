@@ -10,12 +10,11 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/v1/units")
+@RequestMapping("/units")
 class UnitController(
     private val unitService: UnitService
 ) {
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     fun createNewUnit(@Valid @RequestBody request: CreateUnitRequest): BaseResponse<UnitDto> {
         val unit = unitService.createUnit(request)
         return BaseResponse.success(unit)

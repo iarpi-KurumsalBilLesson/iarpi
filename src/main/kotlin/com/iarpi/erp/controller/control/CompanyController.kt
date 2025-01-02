@@ -8,7 +8,7 @@ import com.iarpi.erp.service.control.CompanyService
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/company")
+@RequestMapping("/companies")
 class CompanyController(val companyService: CompanyService) {
 
     @PostMapping

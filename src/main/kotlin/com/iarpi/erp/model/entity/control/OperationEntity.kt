@@ -21,7 +21,7 @@ data class OperationEntity(
     var isPassive: Boolean,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "COM_ID", nullable = false)
+    @JoinColumn(name = "COM_CODE_ID", nullable = false)
     val company: CompanyEntity
 )
 

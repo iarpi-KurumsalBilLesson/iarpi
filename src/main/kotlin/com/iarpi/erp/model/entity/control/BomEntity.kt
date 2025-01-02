@@ -21,6 +21,10 @@ data class BomEntity(
 
     @Column(name = "IS_PASSIVE")
     var isPassive: Boolean,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "COM_CODE_ID", nullable = false)
+    val company: CompanyEntity
 )
 
 fun BomEntity.convertToDto(): BomDto {

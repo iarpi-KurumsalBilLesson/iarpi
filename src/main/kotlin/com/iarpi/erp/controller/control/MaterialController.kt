@@ -8,7 +8,7 @@ import com.iarpi.erp.service.control.MaterialService
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/material")
+@RequestMapping("/materials")
 class MaterialController(val materialService: MaterialService) {
 
     @PostMapping

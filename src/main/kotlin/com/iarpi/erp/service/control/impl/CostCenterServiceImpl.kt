@@ -7,6 +7,7 @@ import com.iarpi.erp.controller.request.convertToEntity
 import com.iarpi.erp.model.dto.control.CostCenterDto
 import com.iarpi.erp.model.entity.control.convertToDto
 import com.iarpi.erp.model.exception.NotFoundException
+import com.iarpi.erp.repository.control.CompanyRepository
 import com.iarpi.erp.repository.control.CostCenterRepository
 import com.iarpi.erp.service.control.CostCenterService
 import org.springframework.stereotype.Service
@@ -14,12 +15,16 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class CostCenterServiceImpl(
-    private val costCenterRepository: CostCenterRepository
+    private val costCenterRepository: CostCenterRepository,
+    private val companyRepository: CompanyRepository
 ) : CostCenterService {
 
     @Transactional
     override fun createCostCenter(request: CreateCostCenterRequest): CostCenterDto {
-        val entity = request.convertToEntity()
+        val company = companyRepository.findById(request.companyId)
+            .orElseThrow { NotFoundException(request.companyId.toString()) }
+
+        val entity = request.convertToEntity(company)
         return costCenterRepository.save(entity).convertToDto()
     }
 

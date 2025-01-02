@@ -8,15 +8,25 @@ import com.iarpi.erp.model.dto.control.BomDto
 import com.iarpi.erp.model.entity.control.convertToDto
 import com.iarpi.erp.model.exception.NotFoundException
 import com.iarpi.erp.repository.control.BomRepository
+import com.iarpi.erp.repository.control.CompanyRepository
 import com.iarpi.erp.service.control.BomService
 import org.springframework.stereotype.Service
 
 @Service
-class BomServiceImpl(val bomRepository: BomRepository) : BomService {
+class BomServiceImpl(val bomRepository: BomRepository,
+    val companyRepository: CompanyRepository
+    ) : BomService {
 
     override fun createBom(request: CreateNewBomRequest): BomDto {
-        val entity = request.convertToEntity()
+        val company = companyRepository.findById(request.companyId)
+            .orElseThrow() { NotFoundException(request.companyId.toString()) }
+
+        val entity = request.convertToEntity(company)
         return bomRepository.save(entity).convertToDto()
+    }
+
+    override fun getAllByCompanyId(id: Long): List<BomDto> {
+        return bomRepository.findAllByCompany_Id(id).map { entity -> entity.convertToDto() }
     }
 
     override fun updateBom(id: Long, request: UpdateBomRequest): BomDto {

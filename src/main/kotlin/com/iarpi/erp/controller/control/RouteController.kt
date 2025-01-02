@@ -8,7 +8,7 @@ import com.iarpi.erp.service.control.RouteService
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/route")
+@RequestMapping("/routes")
 class RouteController(val routeService: RouteService) {
 
     @PostMapping

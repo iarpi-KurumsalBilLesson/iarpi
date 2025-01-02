@@ -19,6 +19,10 @@ data class CostCenterEntity(
 
     @Column(name = "IS_PASSIVE")
     var isPassive: Boolean,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "COM_CODE_ID", nullable = false)
+    val company: CompanyEntity
 )
 
 fun CostCenterEntity.convertToDto(): CostCenterDto {
