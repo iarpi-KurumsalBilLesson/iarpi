@@ -7,7 +7,7 @@ import com.iarpi.erp.model.dto.MaterialHeadDto
 interface MaterialHeadService {
 
     fun createNewMaterialHead(request: CreateMaterialHeadRequest): MaterialHeadDto
-    fun updateMaterialHead(request: UpdateMaterialHeadRequest): MaterialHeadDto
+    fun updateMaterialHead(id : Long,request: UpdateMaterialHeadRequest): MaterialHeadDto
     fun deleteMaterialHeadById(id: Long): String
     fun getAll(): List<MaterialHeadDto>
     fun getById(id: Long): MaterialHeadDto

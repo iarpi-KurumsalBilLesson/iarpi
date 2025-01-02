@@ -22,7 +22,7 @@ class MaterialServiceImpl(
     @Transactional
     override fun createMaterial(request: CreateMaterialRequest): MaterialDto {
         val company = companyRepository.findById(request.companyId)
-            .orElseThrow { NotFoundException("request.companyId.toString()") }
+            .orElseThrow { NotFoundException(request.companyId.toString()) }
 
         val entity = request.convertToEntity(company)
         return materialRepository.save(entity).convertToDto()

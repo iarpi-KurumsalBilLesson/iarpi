@@ -22,7 +22,7 @@ class MaterialHeadController(val materialHeadService: MaterialHeadService) {
         @PathVariable id: Long,
         @RequestBody request: UpdateMaterialHeadRequest
     ): BaseResponse<MaterialHeadDto> {
-        val data = materialHeadService.updateMaterialHead(request)
+        val data = materialHeadService.updateMaterialHead(id,request)
         return BaseResponse.success(data)
     }
 
