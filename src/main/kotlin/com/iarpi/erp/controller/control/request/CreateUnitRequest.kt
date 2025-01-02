@@ -7,21 +7,21 @@ import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
 
 data class CreateUnitRequest(
-    @field:NotBlank(message = "Unit code cannot be blank")
-    @field:Size(max = 50, message = "Unit code cannot exceed 50 characters")
+    @field:NotBlank(message = "Birim kodu boş olamaz")
+    @field:Size(max = 3, message = "Birim kodu 3 karakterden uzun olamaz")
     val unitCode: String,
 
-    @field:NotBlank(message = "Unit text cannot be blank")
-    @field:Size(max = 100, message = "Unit text cannot exceed 100 characters")
+    @field:NotBlank(message = "Birim metni boş olamaz")
+    @field:Size(max = 80, message = "Birim metni 80 karakterden uzun olamaz")
     val unitText: String,
 
     val isMainUnit: Boolean = false,
 
-    @field:NotBlank(message = "Main unit code cannot be blank")
-    @field:Size(max = 50, message = "Main unit code cannot exceed 50 characters")
+    @field:NotBlank(message = "Ana birim kodu boş olamaz")
+    @field:Size(max = 3, message = "Ana birim kodu 3 karakterden uzun olamaz")
     val mainUnitCode: String,
 
-    @field:NotNull(message = "Company ID cannot be null")
+    @field:NotNull(message = "Şirket bilgisi boş olamaz")
     val companyId: Long
 )
 

@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 
 interface BomContentRepository : JpaRepository<BomContentEntity, Long> {
+
+    fun findByBomHead_Id(id: Long): List<BomContentEntity>
 }

@@ -31,6 +31,8 @@ class MaterialHeadServiceImpl(
     //todo: burada material oluştuğunda otomatikman bom ve rot oluşmasını sağla, bunu yaparken boolean değerlerin önemi var
     @Transactional
     override fun createNewMaterialHead(request: CreateMaterialHeadRequest): MaterialHeadDto {
+        this.materialMatDocCheck(request)
+
         val company = companyRepository.findById(request.companyId)
             .orElseThrow { NotFoundException("request.companyId : "+request.companyId.toString()) }
         val material = materialRepository.findById(request.materialId)
@@ -82,8 +84,8 @@ class MaterialHeadServiceImpl(
     }
 
     private fun materialMatDocCheck(request: CreateMaterialHeadRequest) {
-        if (materialHeadRepository.findByDocNumAndCompanyId(request.matDocNumber,request.companyId).isPresent()){
-            throw AlreadyExistException(request.matDocNumber + " is already exist.")
+        if (materialHeadRepository.findByCompany_IdAndDocNum(request.companyId,request.matDocNumber).isPresent){
+            throw AlreadyExistException("Material Kodu ${request.matDocNumber} zaten kayıtlı")
         }
     }
 }

@@ -5,6 +5,7 @@ import com.iarpi.erp.controller.request.UpdateMaterialHeadRequest
 import com.iarpi.erp.controller.response.BaseResponse
 import com.iarpi.erp.model.dto.MaterialHeadDto
 import com.iarpi.erp.service.MaterialHeadService
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 class MaterialHeadController(val materialHeadService: MaterialHeadService) {
 
     @PostMapping
-    fun createNewMaterialHead(@RequestBody request: CreateMaterialHeadRequest): BaseResponse<MaterialHeadDto> {
+    fun createNewMaterialHead(@Valid @RequestBody request: CreateMaterialHeadRequest): BaseResponse<MaterialHeadDto> {
         val data = materialHeadService.createNewMaterialHead(request)
         return BaseResponse.success(data)
     }
@@ -20,9 +21,9 @@ class MaterialHeadController(val materialHeadService: MaterialHeadService) {
     @PutMapping("/{id}")
     fun updateMaterialHead(
         @PathVariable id: Long,
-        @RequestBody request: UpdateMaterialHeadRequest
+        @Valid @RequestBody request: UpdateMaterialHeadRequest
     ): BaseResponse<MaterialHeadDto> {
-        val data = materialHeadService.updateMaterialHead(id,request)
+        val data = materialHeadService.updateMaterialHead(id, request)
         return BaseResponse.success(data)
     }
 

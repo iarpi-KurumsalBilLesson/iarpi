@@ -1,5 +1,6 @@
 package com.iarpi.erp.model.entity
 
+import com.iarpi.erp.model.dto.BomContentDto
 import com.iarpi.erp.model.entity.control.BomEntity
 import com.iarpi.erp.model.entity.control.CompanyEntity
 import jakarta.persistence.*
@@ -11,7 +12,7 @@ data class BomContentEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bom_content_sequence")
     @SequenceGenerator(name = "bom_content_sequence", sequenceName = "bsmgrirpbomcontent_id_seq", allocationSize = 1)
-    val id: Long,
+    val id: Long?,
 
     @Column(name = "CONTENT_NUM", nullable = false)
     val contentNum: Int,
@@ -46,3 +47,25 @@ data class BomContentEntity(
     @JoinColumn(name = "COMP_BOM_DOC_TYPE_ID", nullable = false)
     val compBomType: BomEntity
 )
+
+fun BomContentEntity.convertToDto(): BomContentDto {
+
+    return BomContentDto(
+        id = this.id,
+        companyId = this.company?.id ?: 0L,
+        companyName = this.company.comCode,
+        contentNum = this.contentNum,
+        component = this.component,
+        quantity = this.quantity,
+        costCenterId = this.costCenter.id,
+        costCenterName = this.costCenter.docNum,
+        materialHeadId = this.materialHead.id,
+        materialHeadName = this.materialHead.docNum,
+        bomHeadId = this.bomHead.id,
+        bomHeadName = this.bomHead.docNum,
+        compBomTypeId = this.compBomType.id,
+        componentBomTypeName = this.compBomType.docType
+
+    )
+}
+

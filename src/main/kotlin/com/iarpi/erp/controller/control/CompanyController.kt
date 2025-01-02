@@ -5,6 +5,7 @@ import com.iarpi.erp.controller.control.request.UpdateCompanyRequest
 import com.iarpi.erp.controller.response.BaseResponse
 import com.iarpi.erp.model.dto.control.CompanyDto
 import com.iarpi.erp.service.control.CompanyService
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -12,13 +13,13 @@ import org.springframework.web.bind.annotation.*
 class CompanyController(val companyService: CompanyService) {
 
     @PostMapping
-    fun createNewCompany(@RequestBody request: CreateNewCompanyRequest): BaseResponse<CompanyDto> {
+    fun createNewCompany(@Valid @RequestBody request: CreateNewCompanyRequest): BaseResponse<CompanyDto> {
         val data = companyService.createCompany(request)
         return BaseResponse.success(data)
     }
 
     @PutMapping("/{id}")
-    fun updateCompany(@PathVariable id: Long, @RequestBody request: UpdateCompanyRequest): BaseResponse<CompanyDto> {
+    fun updateCompany(@PathVariable id: Long,@Valid @RequestBody request: UpdateCompanyRequest): BaseResponse<CompanyDto> {
         val data = companyService.updateCompany(id, request)
         return BaseResponse.success(data)
     }

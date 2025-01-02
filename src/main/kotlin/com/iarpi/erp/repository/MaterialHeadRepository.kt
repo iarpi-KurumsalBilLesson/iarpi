@@ -7,5 +7,6 @@ import java.util.*
 interface MaterialHeadRepository : JpaRepository<MaterialHeadEntity, Long> {
 
     fun findByDocNumAndCompanyId(docNum: String, companyId: Long): Optional<MaterialHeadEntity>
+    fun findByCompany_IdAndDocNum(companyId: Long, docNum: String): Optional<MaterialHeadEntity>
 
 }

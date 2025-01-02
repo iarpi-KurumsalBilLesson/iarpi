@@ -3,7 +3,6 @@ package com.iarpi.erp.controller.request
 import com.iarpi.erp.model.entity.MaterialHeadEntity
 import com.iarpi.erp.model.entity.MaterialTextEntity
 import com.iarpi.erp.model.entity.control.CompanyEntity
-import com.iarpi.erp.model.entity.control.LanguageEntity
 import com.iarpi.erp.model.entity.control.MaterialEntity
 import com.iarpi.erp.model.entity.control.UnitEntity
 import jakarta.validation.constraints.Max
@@ -15,26 +14,26 @@ import java.time.LocalDate
 
 data class CreateMaterialHeadRequest(
 
-    @field:NotNull(value = "Company cannot be null")
+    @field:NotNull(value = "Şirket bilgisi boş olamaz")
     val companyId: Long,
 
-    @field:NotNull(value = "Material cannot be null")
+    @field:NotNull(value = "Malzeme bilgisi boş olamaz")
     val materialId: Long,
 
-//    @field:NotNull(value = "Language cannot be null")
+//    @field:NotNull(value = "Dil ID'si boş olamaz")
 //    val languageId: Long, // material kontrol tablosu
 
-    @field:NotBlank(message = "Document number cannot be blank")
+    @field:NotBlank(message = "Belge numarası boş olamaz")
     val matDocNumber: String,
 
-    @field:NotBlank(message = "Document date cannot be blank")
+    @field:NotNull(value = "Geçerlilik başlangıç tarihi boş olamaz")
     val matDocFrom: LocalDate,
 
-    @field:NotBlank(message = "Document date cannot be blank")
+    @field:NotNull(value = "Geçerlilik bitiş tarihi boş olamaz")
     val matDocUntil: LocalDate,
 
-    @field:Min(0, message = "Supply type can only be 0 or 1")
-    @field:Max(1, message = "Supply type can only be 0 or 1")
+    @field:Min(0, message = "Tedarik tipi yalnızca 0 ya da 1 olabilir")
+    @field:Max(1, message = "Tedarik tipi yalnızca 0 ya da 1 olabilir")
     val supplyType: Int,
 
     val newWeightId: Long,
@@ -55,10 +54,10 @@ data class CreateMaterialHeadRequest(
 
     val isPassive: Boolean = false,
 
-    @field:NotBlank(message = "ShortText date cannot be blank")
+    @field:NotBlank(message = "Kısa açıklama boş olamaz")
     var shortText: String,
 
-    @field:NotBlank(message = "LongText date cannot be blank")
+    @field:NotBlank(message = "Uzun açıklama boş olamaz")
     var longText: String,
 )
 
